@@ -1,17 +1,17 @@
-INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
-VALUES ("Драган","Пеевски",12,"asdada");
-INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
-VALUES ("Любомир","Тлаченски",112,"gkhnvbc");
-INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
-VALUES ("Иван","Иванов",512,"ghggkfhhfhf");
-INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
-VALUES ("Дойчин","Златаров",42,"kghkghkgkg");
-INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
-VALUES ("Минаил","Златев",76,"asdrutrutrada");
-INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
-VALUES ("Хосе","Еспаниоло",6585,"kghkgkghkg");
-INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
-VALUES ("Мачо","Пикчо",8362,"asdafasfahdfh");
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
+VALUES ("dragPeev","Драган","Пеевски",12,"asdada");
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
+VALUES ("lubtl","Любомир","Тлаченски",112,"gkhnvbc");
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
+VALUES ("ivIv","Иван","Иванов",512,"ghggkfhhfhf");
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
+VALUES ("doiZl","Дойчин","Златаров",42,"kghkghkgkg");
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
+VALUES ("minaZl","Минаил","Златев",76,"asdrutrutrada");
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
+VALUES ("hoseto","Хосе","Еспаниоло",6585,"kghkgkghkg");
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
+VALUES ("machoto","Мачо","Пикчо",8362,"asdafasfahdfh");
 
 /*INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
 VALUES ("TEST","TEST",6585,"kghkgDFGDkghkg");
