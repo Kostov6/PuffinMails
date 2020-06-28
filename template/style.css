@@ -1,0 +1,40 @@
+#sidebar {
+    width: 120px;
+    font-size: 18px;
+}
+
+#sidebar button {
+    width: 100px;
+    padding: 5px;
+    margin: 10px 10px 5px;
+    cursor: pointer;
+    background-color: rgb(52, 73, 94);
+    border: 0;
+    color: white;
+    font-size: 16px;
+}
+
+#sidebar div {
+    
+}
+
+#sidebar div a {
+    display: block;
+    text-decoration: none;
+    margin: 5px 0 5px;
+    padding: 5px 10px 5px;
+    color: rgb(52, 73, 94);
+}
+
+#sidebar div a:hover {
+    background-color: lightgray;
+}
+
+main {
+    width: 1500px;
+    height: 700px;
+}
+
+body {
+    display: flex;
+}
