@@ -1,0 +1,55 @@
+
+main {
+    border: 2px solid rgb(52, 73, 94);
+}
+
+#profile {
+	display: block;
+	margin: 0 auto;
+}
+
+#info {
+    margin-left: 15px;
+    margin-top: 15px;
+    width: 95%;
+    height: 70px;
+    background-color: rgb(52, 73, 94);
+}
+
+.infoS {
+    width: 7%;
+    float: left;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+}
+.infoT {
+    width: 90%;
+    margin-top: 10px;
+}
+
+#options {
+    width: 100%;
+    margin-top : 10px;
+}
+
+.opt {
+    color: white;
+    background-color: rgb(52, 73, 94);
+    width: 12%;
+    height: 25px;
+    margin-left: 1%;
+}
+
+#error {
+    color: red;
+    margin-left: 1%;
+}
+
+#message {
+    margin: 5px 1%;
+    width: 95%;
+    height: 540px;
+    border: 2px solid rgb(52, 73, 94);
+    resize: none;
+}

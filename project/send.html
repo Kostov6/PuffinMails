@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/send.css">  
+    </head>
+    <body>
+        <nav id="sidebar">
+            <button>Напиши</button>
+            <div>
+                <a href="#">Кутия</a>
+                <a href="#">Група</a>
+                <a href="#">Изпратени</a>
+                <a href="#">Чернови</a>
+                <a href="#">Контакти</a>
+            </div>
+        </nav>
+        <main>
+            <form id="form" method="POST" enctype="multipart/form-data" action="php/sendIt.php">
+                <div id="info">
+                    <div class="infoS">До:</div> <input class="infoT" type="text" name="to"><br>
+                    <div class="infoS">Тема:</div> <input class="infoT" type="text" name="object"><br>
+                </div>
+                <div id="options">
+                    <input type="submit" class="opt" name="submit" value="Изпрати">
+                    <input type="submit" class="opt" name="anonySubmit" value="Анонимно изпращане">
+                    <input type="submit" class="opt" name="draft" value="Запази в чернови">
+                </div>
+                <textarea id="message" name="message" wrap="hard"></textarea>
+            </form>
+        </main>
+    </body>
+</html>
