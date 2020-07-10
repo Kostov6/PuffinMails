@@ -4,9 +4,9 @@
             $receiverIds = [$receiverIds];
         }
 
-        $sql = "INSERT INTO MESSAGE(senderId, msgType, title, content) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO message(senderId, msgType, title, content) VALUES (?, ?, ?, ?)";
         $db->insert($sql, [$senderId, $msgType, $title, $content]);
-
+        
         $sql = "SELECT MAX(`msgId`) FROM message WHERE senderId = ?";
         $msgId = $db->select($sql,[$senderId])[0]['MAX(`msgId`)'];
 

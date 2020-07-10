@@ -26,7 +26,7 @@
         <main>
             <div id="success">
                 <?php
-					if ($_SESSION['last'] == 5) {
+					if (isset($_SESSION['last'])) {
                         echo "Успешно изпратено глобално съобщение!";
                     }
                     else if (strlen($_SESSION['to']) < 4) {

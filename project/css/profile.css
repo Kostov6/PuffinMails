@@ -34,4 +34,5 @@ td {
 #submit:hover {
     background-color: lightgray;
 	color: rgb(52, 73, 94);
+	cursor: pointer;
 }

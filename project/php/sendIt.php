@@ -60,7 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Съобщението не е анонимно!";
             return;
         }
-        if (strlen($to) < 4) {
+        elseif (!isset($_SESSION['end'])) {
+            $error = "В момента не могат да се изпращат анонимни съобщения!";
+            return;
+        }
+        elseif (strlen($to) < 4) {
             $type = 1;
         }
         else {

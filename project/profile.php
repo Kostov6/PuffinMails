@@ -10,6 +10,15 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/nav.css">
 		<link rel="stylesheet" type="text/css" href="css/profile.css">
+		<script> 
+            window.onload = function () {
+
+                if (<?php echo isset($_SESSION['end'])?'true':'false'; ?>) {
+                    document.getElementById('event').style.display = "block";
+
+                }
+            }
+        </script>
     </head>
     <body>
         <nav id="sidebar">
@@ -24,6 +33,11 @@
             </div>
         </nav>
         <main>
+		<div id="event">
+                <?php
+                    echo "Моля напишете рецензия на тема ".$_SESSION['recension_number']." и я изпратете анонимно до ".$_SESSION["end"]; 
+                ?>
+			</div>
 			<div id="cont">
 				<h3>Потребителска информация:</h2>
 				<table>

@@ -16,10 +16,13 @@
 		<link rel="stylesheet" type="text/css" href="css/nav.css">
 		<script> 
             window.onload = function () {
-				if (false) {
-					document.getElementById('event').innerText = "hello";
-				}
-                if (<?php echo $showSendAllButton; ?>) {
+
+                if (<?php echo isset($_SESSION['end'])?'true':'false'; ?>) {
+                    document.getElementById('event').style.display = "block";
+                    document.getElementById('anony').style.display = "inline-block";
+                }
+				
+                if (<?php echo $showSendAllButton?'true':'false'; ?>) {
                     var spot = document.getElementById('options');
 
                     var btn = document.createElement('input');
@@ -47,6 +50,9 @@
         </nav>
         <main>
 			<div id="event">
+                <?php
+                    echo "Моля напишете рецензия на тема ".$_SESSION['recension_number']." и я изпратете анонимно до ".$_SESSION["end"]; 
+                ?>
 			</div>
             <form id="form" method="POST" enctype="multipart/form-data" action="">
                 <div id="info">
@@ -56,7 +62,7 @@
                 <div id="options">
                     <input type="submit" class="opt" name="submit" value="Изпрати">
                     <input type="submit" class="opt" name="draft" value="Запази в чернови">
-					<input type="submit" class="opt" name="anonySubmit" value="Анонимно изпращане">
+					<input type="submit" id="anony" class="opt" name="anonySubmit" value="Анонимно изпращане" style="display:none">
                     
                 </div>
                 <textarea id="message" name="message" wrap="hard"><?php if (isset($_POST['message'])) echo $_POST['message']; ?></textarea>
@@ -66,7 +72,6 @@
                     require_once('php/sendIt.php');
                     if ($_POST && $error != "") {
                         echo $error;
-                        $error = "";
                     }
                 ?>
             </div>

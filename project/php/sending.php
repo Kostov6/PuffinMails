@@ -1,12 +1,15 @@
 <?php
-	include ('db.php');
-	include ('sendMessage.php');
+	
+	
 	function sending() {
+		
+		require ('db.php');
+		require ('sendMessage.php');
 		require ('authorization.php');
 
 		$db = new Db('project','');
 
-		$title = $_POST['title'];
+		$title = $_POST['object'];
 		$message = $_POST['message'];
 		$senderId = $_SESSION['userID'];
 

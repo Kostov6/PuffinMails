@@ -18,7 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($fn == $row['faculty_number']) {
             session_start();
             $_SESSION=$row;
-            $_SESSION['logged'] = true;   
+            $_SESSION['logged'] = true;
+            "SELECT  FROM message WHERE senderId = ?";
+            $sql = "SELECT * FROM events WHERE end_date > CURRENT_DATE()";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $row = $stmt->fetch();
+            if ($row) {
+                $_SESSION['end'] = $row['end_date'];
+            }
             header('Location: send.php');
         } else {
             $error = "Грешен факултетен номер!";
