@@ -7,13 +7,13 @@
         $db = new Db("webproject",'');
         
         //get users ID
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$user]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $id=$result[0]["userID"];
 
         //set user's member_of to NULL
          $db->insert("UPDATE users SET member_of = NULL WHERE userId = ?",[$id]);
         
-        echo "User left the group";
+        echo '{"status":"User left the group"}';
     }
 
     $cookie="";

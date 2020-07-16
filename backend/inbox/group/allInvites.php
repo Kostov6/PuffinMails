@@ -1,11 +1,11 @@
 <?php
     include '../common/common.php';
 
-    function allContacts($user)
+    function allInvites($user)
     {
         $db = new Db("webproject",'');
         
-        $result=$db->select("SELECT u2.first_name,u2.last_name,u2.username FROM users u1 INNER JOIN contactlist cl on u1.userID = cl.userId INNER JOIN users u2 on cl.contactId = u2.userID WHERE u1.username=?",[$user]);
+        $result=$db->select("SELECT u1.first_name,u1.username FROM users u1 INNER JOIN invites on u1.userID = invites.leaderId INNER JOIN users u2 on invites.userId = u2.userID WHERE u2.username = ?",[$user]);
         echo json_encode($result);
     }
     
@@ -20,6 +20,6 @@
     }
     else
     {
-        allContacts($cookie);
+        allInvites($cookie);
     }
 ?>

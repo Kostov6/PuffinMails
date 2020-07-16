@@ -6,10 +6,10 @@
     {
         
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT member_of FROM users WHERE faculty_number=?",[$leader]);
+        $result=$db->select("SELECT member_of FROM users WHERE username=?",[$leader]);
         $groupId1=$result[0]["member_of"];
         
-        $result=$db->select("SELECT member_of FROM users WHERE faculty_number=?",[$user]);
+        $result=$db->select("SELECT member_of FROM users WHERE username=?",[$user]);
         $groupId2=$result[0]["member_of"];
 
         return $groupId1 == $groupId2;
@@ -21,13 +21,13 @@
         $db = new Db("webproject",'');
         
         //get users ID
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$user]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $id=$result[0]["userID"];
 
         //set user's member_of to NULL
          $db->insert("UPDATE users SET member_of = NULL WHERE userId = ?",[$id]);
         
-        echo "User removed";
+        echo '{"status":"User removed"}';
     }
 
     $cookie="";

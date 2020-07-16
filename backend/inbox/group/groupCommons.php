@@ -3,14 +3,14 @@
     function isInGroup($user)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT userID,faculty_number FROM users WHERE member_of IS NOT NULL AND faculty_number=?",[$user]);
+        $result=$db->select("SELECT userID,username FROM users WHERE member_of IS NOT NULL AND username=?",[$user]);
         return count($result) == 1;
     }
 
     function isLeader($user)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT * FROM users INNER JOIN groups on member_of=groups.groupId WHERE faculty_number=? AND userID=groups.leaderId",[$user]);
+        $result=$db->select("SELECT * FROM users INNER JOIN groups on member_of=groups.groupId WHERE username=? AND userID=groups.leaderId",[$user]);
         return count($result) == 1;
     }
 

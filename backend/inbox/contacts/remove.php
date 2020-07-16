@@ -4,16 +4,17 @@
 
     function removeUser($user,$contact)
     {
+        echo $user." ".$contact;
         $db = new Db("webproject",'');
 
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$user]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $id1=$result[0]["userID"];
         
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$contact]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$contact]);
         $id2=$result[0]["userID"];
 
-        $result=$db->insert("DELETE FROM contactlist WHERE userId = 2 AND contactId = 3",[$id1,$id2]);
-        echo "User removed";
+        $result=$db->insert("DELETE FROM contactlist WHERE userId = ? AND contactId = ?",[$id1,$id2]);
+        echo '{"status":"User removed"}';
     }
 
     $cookie="";

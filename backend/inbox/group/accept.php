@@ -7,13 +7,13 @@
         $db = new Db("webproject",'');
         
         //get leader ID
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$leader]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$leader]);
         $leaderId=$result[0]["userID"];
         //get user id
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$user]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $userId=$result[0]["userID"];
         //get group id
-        $result=$db->select("SELECT member_of FROM users WHERE faculty_number = ?",[$leader]);
+        $result=$db->select("SELECT member_of FROM users WHERE username = ?",[$leader]);
         $groupId=$result[0]["member_of"];
 
         //check if invitation exists
@@ -26,7 +26,7 @@
             //set member_of of user
             $db->insert("UPDATE users SET member_of=? WHERE userId=?",[$groupId,$userId]);
            
-            echo "Invitation accepted. You are now part of a group";
+            echo '{"status":"Invitation accepted. You are now part of a group"}';
         }
         else
         {

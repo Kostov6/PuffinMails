@@ -7,14 +7,14 @@
 
         $db = new Db("webproject",'');
         
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$user]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $id1=$result[0]["userID"];
         
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$contact]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$contact]);
         $id2=$result[0]["userID"];
 
         $result=$db->insert("INSERT INTO contactlist values (?,?)",[$id1,$id2]);
-        echo "User added";
+        echo '{"status":"User added"}';
     }
 
     $cookie="";

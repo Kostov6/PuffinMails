@@ -29,6 +29,7 @@ CREATE TABLE MESSAGE(
     title VARCHAR(128) NOT NULL,
     content VARCHAR(2048) NOT NULL,
     senderId INT,
+    date_send DATE,
     FOREIGN KEY(senderId) REFERENCES USERS(userId)
 );
 CREATE TABLE USERS(

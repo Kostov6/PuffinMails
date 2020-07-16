@@ -6,7 +6,7 @@
     {
         $db = new Db("webproject",'');
         
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$user]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $id=$result[0]["userID"];
 
         //create the group with the leader as user
@@ -18,7 +18,7 @@
         //set memeber_of of the leader
         $db->insert("UPDATE users SET member_of = ? WHERE userId = ?",[$groupId,$id]);
         
-        echo "Group created successfully";
+        echo '{"status":"Group created successfully"}';
     }
 
     $cookie="";

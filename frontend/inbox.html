@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="css/inbox.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="control_panel">
+      <div class="control_panel_field">
+        <p>Contacts</p>
+        <button id="contact_options" class="control_options">
+          <i class="fa fa-caret-down"></i>
+        </button>
+      </div>
+      <div id="contact_members">
+        <!--<div class="panel_member">
+          <i class="far fa-id-badge"></i>
+          <p>Goshko</p>
+          <button class="delete_contact">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+        <div class="panel_member">
+          <i class="far fa-id-badge"></i>
+          <p>Peshko</p>
+          <button class="delete_contact">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+        <div class="panel_member">
+          <i class="far fa-id-badge"></i>
+          <p>Yordan</p>
+          <button class="delete_contact">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      --></div>
+    </div>
+
+    <div class="control_panel">
+      <div class="control_panel_field">
+        <p>Group</p>
+        <button id="group_options" class="control_options">
+          <i class="fa fa-cog"></i>
+        </button>
+      </div>
+      <div id="group_members">
+        <!--
+        <div class="panel_member">
+          <i class="fa fa-crown"></i>
+          <p>Goshko</p>
+        </div>
+        <div class="panel_member">
+          <i class="fa fa-user"></i>
+          <p>Peshko</p>
+        </div>
+        <div class="panel_member">
+          <i class="fa fa-user"></i>
+          <p>Yordan</p>
+        </div>
+      --></div>
+    </div>
+
+    <div class="options_panel">
+      <h1>Управление на групата</h1>
+      <h2>Напускане на групата</h2>
+      <p>
+        Натискайки бутон ще излезете от групата, в която се намирате в момента:
+        <button>Напускане</button>
+      </p>
+    </div>
+    <div class="options_panel">
+      <h1>Управление на групата</h1>
+      <h2>Създаване на нова група</h2>
+      <p>
+        Натискайки бутон ще създадете своя група:
+        <button>Нова група</button>
+      </p>
+      <h2>Присъединяване в група</h2>
+      <p>
+        Тък може да видите всички покани, които сте получили за присъединяването
+        към група
+      </p>
+      <div id="invites">
+        <div class="invite_item">
+          <div class="invite_name" style="font-weight: bold;">Име</div>
+          <div class="invite_username" style="font-weight: bold;">
+            Потребителско име
+          </div>
+        </div>
+        <div class="invite_item">
+          <div class="invite_name">sdasdaasd</div>
+          <div class="invite_username">dfsdfsfssgssdg</div>
+          <div class="invite_button_container">
+            <button class="invite_button">Приемане</button>
+          </div>
+        </div>
+        <div class="invite_item">
+          <div class="invite_name">sdasdaasd</div>
+          <div class="invite_username">dfsdfsfssgssdg</div>
+          <div class="invite_button_container">
+            <button class="invite_button">Приемане</button>
+          </div>
+        </div>
+        <div class="invite_item">
+          <div class="invite_name">sdasdaasd</div>
+          <div class="invite_username">dfsdfsfssgssdg</div>
+          <div class="invite_button_container">
+            <button class="invite_button">Приемане</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="options_panel">
+      <h1>Управление на групата</h1>
+      <h2>Поканване на членове в групата</h2>
+      <p>
+        Въведете име и фамилия или потребителското име, за да изпратите покана
+        за присъединяване
+      </p>
+      <input type="text" style="height: 2em;" />
+      <button style="padding: 0.5em 1em;">Изпращане на покана</button>
+      <h2>Премахване на членове от групата</h2>
+      <p>От долното меню може като лидер на групата да премахнете участник</p>
+      <div id="kick_container">
+        <div class="kick_item">
+          <div class="kick_name" style="font-weight: bold;">
+            Име на участника
+          </div>
+          <div class="kick_button_container"></div>
+        </div>
+        <div class="kick_item">
+          <div class="kick_name">sdasdaasd</div>
+          <div class="kick_button_container">
+            <button class="kick_button">Премахване</button>
+          </div>
+        </div>
+        <div class="kick_item">
+          <div class="kick_name">sdasdaasd</div>
+          <div class="kick_button_container">
+            <button class="kick_button">Премахване</button>
+          </div>
+        </div>
+      </div>
+      <div class="kick_item">
+        <div class="kick_name">sdasdaasd</div>
+        <div class="kick_button_container">
+          <button class="kick_button">Премахване</button>
+        </div>
+      </div>
+      <h2>Разпускане на групата</h2>
+      <p>
+        Натискайки бутона ще изтриете групата, на която сте лидера
+        <button class="red_button">Разпускане на групата</button>
+      </p>
+    </div>
+  </body>
+  <script src="js/contacts.js"></script>
+  <script src="js/group.js"></script>
+</html>

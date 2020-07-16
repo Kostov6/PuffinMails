@@ -13,7 +13,7 @@
     function viewInbox($cookie,$filter)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT m.* FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId WHERE u.faculty_number=? AND m.msgType=?",[$cookie,$filter]);
+        $result=$db->select("SELECT m.msgId,m.title,m.date_send,u2.username FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType=? ORDER BY date_send DESC",[$cookie,$filter]);
         echo json_encode($result);
     }
     

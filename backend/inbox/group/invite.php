@@ -7,16 +7,16 @@
         $db = new Db("webproject",'');
         
         //get leader ID
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$leader]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$leader]);
         $leaderId=$result[0]["userID"];
         //get user id
-        $result=$db->select("SELECT userID FROM users WHERE faculty_number = ?",[$user]);
+        $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $userId=$result[0]["userID"];
         
         //set crate invite
          $db->insert("INSERT INTO invites VALUES (?,?)",[$leaderId,$userId]);
 
-        echo "User invited";
+        echo '{"status":"User invited"}';
     }
 
     $cookie="";
@@ -42,6 +42,14 @@
     else if(!isValidUser($user))
     {
         echo "User you are trying to invite is not valid";
+    }
+    else if(isUserSelf($cookie,$user))
+    {
+        echo "You cannot invite yourself";
+    }
+    else if(isInGroup($user))
+    {
+        echo "User is already in group";
     }
     else
     {

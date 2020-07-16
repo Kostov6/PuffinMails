@@ -9,7 +9,7 @@
     function validateSession($cookie)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT * FROM users WHERE faculty_number = ?",[$cookie]);
+        $result=$db->select("SELECT * FROM users WHERE username = ?",[$cookie]);
         if(count($result)==1)
             return true;
         return false;
@@ -18,7 +18,7 @@
     function isValidUser($user)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT * FROM users WHERE faculty_number = ?",[$user]);
+        $result=$db->select("SELECT * FROM users WHERE username = ?",[$user]);
         if(count($result)==1)
             return true;
         return false;

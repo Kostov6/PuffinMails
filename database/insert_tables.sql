@@ -59,12 +59,12 @@ WHERE userId=7;
 
 /* ---------------------------------------------- */
 
-INSERT INTO MESSAGE(senderId,msgType,title,content)
-VALUES (1,0,"Title #1","Message #1");
-INSERT INTO MESSAGE(senderId,msgType,title,content)
-VALUES (2,1,"Title #2","Message #2");
-INSERT INTO MESSAGE(senderId,msgType,title,content)
-VALUES (3,2,"Title #3","Message #3");
+INSERT INTO MESSAGE(senderId,msgType,title,content,date_send)
+VALUES (1,0,"Title #1","Message #1","2020-01-01");
+INSERT INTO MESSAGE(senderId,msgType,title,content,date_send)
+VALUES (2,1,"Title #2","Message #2","2020-02-02");
+INSERT INTO MESSAGE(senderId,msgType,title,content,date_send)
+VALUES (3,2,"Title #3","Message #3","2020-03-03");
 
 
 INSERT INTO INBOXMESSAGES (msgId,inboxId)
