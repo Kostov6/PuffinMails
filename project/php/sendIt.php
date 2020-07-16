@@ -1,5 +1,5 @@
 <?php
-include ('sending.php');
+require ('sendAll.php');
 function checkIfAnony($message){
     $exp = "/".$_SESSION['username']."|".$_SESSION['faculty_number']."|".$_SESSION['first_name']."|".$_SESSION['last_name']."/";
     if (preg_match( $exp, $message)) {
@@ -19,6 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = "";
     $type = 0;
 
+    try{
+        $conn = new PDO("mysql:host=localhost:3306;dbname=project", "root", "");
+    } catch (PDOException $e) {
+        $error = "В момента има проблем с базата данни, моля опитайте по-късно!";
+        return;
+    }
+
     if (strlen($message) == 0 || strlen($message) > 2048) {
         $error = "Съобщението трябва да е между 1 и 2048 символа!";
         return;
@@ -29,16 +36,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (isset($_POST['draft'])) {
         $type = 6;
-        $conn = new PDO("mysql:host=localhost:3306;dbname=project", "root", "");
         $sql = "INSERT INTO message (msgType, title, content, senderId)
                 VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$type, $object, $message, $id]);
         return;
     }
-	else if (isset($_POST['sendAll'])) {
-		$_SESSION["last"] = 5;
-		sending();
+    elseif (isset($_POST['sendGroup'])) {
+        if (!isset($_SESSION['member_of'])) {
+            $error = "Вие не сте член на група";
+            return;
+        }
+
+        $type = 4;
+        $sql = "SELECT * FROM users WHERE member_of = ? and userID != ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$_SESSION['member_of'], $_SESSION['userID']]);
+        $row = $stmt -> fetchAll();
+
+        $sql = "INSERT INTO message (msgType, title, content, senderId)
+            VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$type, $object, $message, $id]);
+
+        $sql = "SELECT MAX(`msgId`) FROM message WHERE senderId = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+        $msgId = $result["MAX(`msgId`)"];
+        
+        foreach ($row as $row) {
+            $sql = "INSERT INTO inboxmessages (inboxId, msgId)
+                    VALUES (?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$row['userID'], $msgId]);
+        }
+        header("Location: success.php?to=sendGroup");
+		return;
+	}
+	elseif (isset($_POST['sendAll'])) {
+        sendAll();
+        header("Location: success.php?to=sendAll");
 		return;
 	}
 
@@ -64,6 +102,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "В момента не могат да се изпращат анонимни съобщения!";
             return;
         }
+        elseif  ($_SESSION['is_admin'] == 1) {
+            $error = "Администраторите не могат да пращат анонимни писма!";
+            return;
+        }
         elseif (strlen($to) < 4) {
             $type = 1;
         }
@@ -73,7 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (strlen($to) < 4 ) {
-        $conn = new PDO("mysql:host=localhost:3306;dbname=project", "root", "");
         $sql = "SELECT * FROM users WHERE number_theme = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$to]);
@@ -83,9 +124,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Няма потребител с тема: $to";
             return;
         }
+        elseif ($_SESSION['recension_number'] == $to) {
+            unset($_SESSION['end']);
+        }
     }
     else {
-        $conn = new PDO("mysql:host=localhost:3306;dbname=project", "root", "");
         $sql = "SELECT * FROM users WHERE username = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$to]);
@@ -96,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return;
         }
     }
-    $_SESSION['to'] = $to;
+    $too = $to;
     $to = $row['userID'];
 
     $sql = "INSERT INTO message (msgType, title, content, senderId)
@@ -108,11 +151,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
     $row = $stmt->fetch();
-    $msgid = $row["MAX(`msgId`)"];
+    $msgId = $row["MAX(`msgId`)"];
 
     $sql = "INSERT INTO inboxmessages (inboxId, msgId)
             VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$to, $msgid]);
-    header("Location: success.php");
+    $stmt->execute([$to, $msgId]);
+    header("Location: success.php?to=" . $too);
 }

@@ -3,21 +3,10 @@ main {
     border: 2px solid rgb(52, 73, 94);
 }
 
-#event {
-    display: none;
-    width: 95%;
-    height: 70px;
-    margin-left: 15px;
-    background-color: lightsalmon;
-    margin-top: 5px;
-    text-align: center;
-    font-size: 20px;
-    line-height: 70px;
-}
 #info {
     margin-left: 15px;
     margin-top: 15px;
-    width: 95%;
+    width: 98%;
     height: 70px;
     background-color: rgb(52, 73, 94);
 }
@@ -30,7 +19,7 @@ main {
     color: white;
 }
 .infoT {
-    width: 90%;
+    width: 91.5%;
     margin-top: 10px;
 }
 
@@ -61,7 +50,7 @@ main {
 
 #message {
     margin: 5px 1%;
-    width: 95%;
+    width: 97.5%;
     height: 540px;
     border: 2px solid rgb(52, 73, 94);
     resize: none;
