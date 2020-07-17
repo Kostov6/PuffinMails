@@ -79,10 +79,10 @@ var indicator = showButton.querySelector("i");
 showButton.addEventListener("click", (evemt) => {
   toggleOn = !toggleOn;
   if (toggleOn) {
-    indicator.setAttribute("class", "fa fa-caret-up");
+    //indicator.setAttribute("class", "fa fa-caret-up");
     document.getElementById("contact_members").style.display = "block";
   } else {
-    indicator.setAttribute("class", "fa fa-caret-down");
+    //indicator.setAttribute("class", "fa fa-caret-down");
     document.getElementById("contact_members").style.display = "none";
   }
 });

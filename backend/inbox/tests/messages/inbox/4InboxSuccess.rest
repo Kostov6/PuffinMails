@@ -1,2 +1,2 @@
 
-GET http://localhost/Project/backend/inbox/messages/inbox.php?cookie=minaZl&filter=1      HTTP/1.1
+GET http://localhost/Project/backend/inbox/messages/inbox.php?cookie=hoseto&filter=1      HTTP/1.1

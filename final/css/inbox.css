@@ -1,0 +1,241 @@
+.control_panel {
+  font-size: 12px;
+  width: 16em;
+}
+
+.control_panel_field {
+  height: 3em;
+  display: flex;
+  align-items: center;
+}
+
+.control_panel_field p {
+  font-size: 18px;
+  margin-left: 0.25em;
+  flex-grow: 2;
+}
+
+.control_panel .control_options {
+  float: right;
+  margin-right: 0.5em;
+  border: none;
+  background-color: lightgray;
+  font-size: 1.5em;
+}
+.control_panel .control_options:hover {
+  font-size: 2em;
+  margin-right: 0.25em;
+}
+
+.control_panel .control_options:focus {
+  outline: none;
+}
+
+#group_members {
+}
+
+#inbox_members {
+}
+
+#contact_members {
+  display: none;
+}
+
+#contact_options {
+}
+
+.panel_member {
+  font-size: 1.5em;
+  margin-left: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.panel_member > i {
+  margin-right: 0.5em;
+}
+
+.panel_member > p {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.not_in_group {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 0 1em 0 1em;
+}
+
+.options_panel {
+  width: 50em;
+  font-size: 1.3em;
+}
+
+.options_panel > h1 {
+  border-bottom: 6px solid #57c4d0;
+  text-align: center;
+}
+
+.options_panel > h2 {
+  border-bottom: 1px solid gray;
+}
+
+.options_panel button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0.25em 0.125em;
+  font-size: 0.8em;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 2px solid #4caf50;
+}
+
+.options_panel button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;
+}
+
+.invite_item {
+  border-bottom: 1px solid gray;
+}
+
+.invite_name {
+  display: inline-block;
+  width: 40%;
+}
+
+.invite_username {
+  display: inline-block;
+  width: 40%;
+}
+
+.invite_button_container {
+  display: inline-block;
+  width: 15%;
+}
+
+.kick_item {
+  border-bottom: 1px solid gray;
+}
+
+.kick_name {
+  display: inline-block;
+  width: 25%;
+}
+
+.kick_button_container {
+  display: inline-block;
+  width: 15%;
+}
+
+.options_panel .kick_button {
+  background-color: orange;
+  border: 2px solid orange;
+}
+
+.options_panel .kick_button:hover {
+  border: 2px solid orange;
+}
+
+.options_panel .red_button {
+  background-color: red;
+  border: 2px solid red;
+}
+
+.options_panel .red_button:hover {
+  border: 2px solid red;
+}
+
+.options_panel .invite_button {
+  padding: 8px 16px;
+}
+
+#contacts_panel {
+  width: 20em;
+  background-color: aqua;
+}
+
+#contacts_control_field {
+  height: 3em;
+  display: flex;
+  align-items: center;
+}
+
+.control_panel .delete_contact {
+  float: right;
+  margin-right: 0.5em;
+  border: none;
+  background-color: white;
+  font-size: 1em;
+}
+.control_panel .delete_contact:hover {
+  font-size: 1.1em;
+  margin-right: 0.4em;
+}
+
+.control_panel .delete_contact:focus {
+  outline: none;
+}
+
+#contact_members p {
+  flex-grow: 1;
+}
+
+#send_invite {
+  padding: 0.5em 1em;
+}
+
+#invite_name {
+  height: 2em;
+}
+
+#message_content {
+  margin: 5px 1%;
+  width: 95%;
+  height: 540px;
+  border: 2px solid rgb(52, 73, 94);
+  resize: none;
+}
+
+#message_container {
+  display: none;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 8px;
+}
+
+table .row_element:hover {
+  background-color: #dddddd;
+}
+
+.control_panel_field:hover {
+  background-color: gray;
+}
+
+#report_button {
+  width: 200px;
+  height: 30px;
+}
+
+#msg_info {
+  margin-left: 15px;
+  margin-top: 15px;
+  width: 95%;
+  height: 140px;
+  background-color: rgb(52, 73, 94);
+}

@@ -1,17 +1,18 @@
-INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
-VALUES ("dragPeev","Драган","Пеевски",12,"asdada");
-INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
-VALUES ("lubtl","Любомир","Тлаченски",112,"gkhnvbc");
-INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
-VALUES ("ivIv","Иван","Иванов",512,"ghggkfhhfhf");
-INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
-VALUES ("doiZl","Дойчин","Златаров",42,"kghkghkgkg");
-INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
-VALUES ("minaZl","Минаил","Златев",76,"asdrutrutrada");
-INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
-VALUES ("hoseto","Хосе","Еспаниоло",6585,"kghkgkghkg");
-INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash)
-VALUES ("machoto","Мачо","Пикчо",8362,"asdafasfahdfh");
+
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash,number_theme)
+VALUES ("dragPeev","Драган","Пеевски",12,"asdada",101);
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash,number_theme)
+VALUES ("lubtl","Любомир","Тлаченски",112,"gkhnvbc",102);
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash,number_theme)
+VALUES ("ivIv","Иван","Иванов",512,"ghggkfhhfhf",103);
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash,number_theme)
+VALUES ("doiZl","Дойчин","Златаров",42,"kghkghkgkg",104);
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash,number_theme)
+VALUES ("minaZl","Минаил","Златев",76,"asdrutrutrada",105);
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash,number_theme)
+VALUES ("hoseto","Хосе","Еспаниоло",6585,"kghkgkghkg",106);
+INSERT INTO USERS (username,first_name,last_name,faculty_number,password_hash,number_theme)
+VALUES ("machoto","Мачо","Пикчо",8362,"asdafasfahdfh",107);
 
 /*INSERT INTO USERS (first_name,last_name,faculty_number,password_hash)
 VALUES ("TEST","TEST",6585,"kghkgDFGDkghkg");

@@ -13,7 +13,44 @@
     function viewInbox($cookie,$filter)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT m.msgId,m.title,m.date_send,u2.username FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType=? ORDER BY date_send DESC",[$cookie,$filter]);
+        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.date_send,u2.username as sender,seen FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType=? ORDER BY date_send DESC",[$cookie,$filter]);
+        $result=anonymize($result);
+
+        echo json_encode($result);
+    }
+
+    function anonymize($result)
+    {
+        $db = new Db("webproject",'');
+        for($i=0;$i<count($result);$i++)
+        {
+            if($result[$i]["msgType"] == 1 || $result[$i]["msgType"] == 2)
+            {
+                //анонимизиране на изпращача
+                $row=$db->select("SELECT number_theme FROM users WHERE username = ?",[$result[$i]["sender"]]);
+                $result[$i]["sender"] = $row[0]["number_theme"];
+            }
+        }
+        //var_dump($result);
+        return $result;
+    }
+
+    function viewAll($cookie)
+    {
+        $db = new Db("webproject",'');
+        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.date_send,u2.username as sender,seen  FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? ORDER BY date_send DESC",[$cookie]);
+        $result=anonymize($result);
+
+        echo json_encode($result);
+
+    }
+
+    function viewSendMessages($cookie)
+    {
+        $db = new Db("webproject",'');
+        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.date_send,u2.username as sender,seen  FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND u2.username =? ORDER BY date_send DESC",[$cookie,$cookie]);
+        $result=anonymize($result);
+        
         echo json_encode($result);
     }
     
@@ -30,6 +67,14 @@
     if(!validateSession($cookie))
     {
         echo "Invalid cookie";
+    }
+    else if($filter == "")
+    {
+        viewAll($cookie);
+    }
+    else if($filter == "send")
+    {
+        viewSendMessages($cookie);
     }
     else if(!isValidFilter($filter))
     {

@@ -1,0 +1,38 @@
+#cont {
+	margin: 30px 1%;
+	width: 520px;
+}
+
+table {
+    border-collapse: collapse; 
+}
+tr {
+	width: 100%;
+	border: 2px solid rgb(52, 73, 94);
+}
+
+td {
+	width: 40%;
+	height: 25px;
+	font-size: 18px;
+}
+
+.right {
+	text-align: right;
+}
+
+#submit {
+	margin-top: 5px;
+	float: right;
+	background-color: rgb(52, 73, 94);
+	border: none;
+	color: white;
+	width: 70px;
+	height: 20px;
+}
+
+#submit:hover {
+    background-color: lightgray;
+	color: rgb(52, 73, 94);
+	cursor: pointer;
+}
