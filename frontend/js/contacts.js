@@ -20,10 +20,7 @@ function showErrorMst(errorMsg) {
 
 function addContact(user) {
   let data = synchGETRequest(
-    "http://localhost/Project/backend/inbox/contacts/add.php?cookie=" +
-      loggedUser +
-      "&user=" +
-      user
+    "../backend/inbox/contacts/add.php?cookie=" + loggedUser + "&user=" + user
   );
   try {
     data = JSON.parse(data);
@@ -36,7 +33,7 @@ function addContact(user) {
 
 function removeContact(user) {
   let data = synchGETRequest(
-    "http://localhost/Project/backend/inbox/contacts/remove.php?cookie=" +
+    "../backend/inbox/contacts/remove.php?cookie=" +
       loggedUser +
       "&user=" +
       user
@@ -54,8 +51,7 @@ function getContacts() {
   let output = [];
   let userList = [];
   let data = synchGETRequest(
-    "http://localhost/Project/backend/inbox/contacts/all.php?cookie=" +
-      loggedUser
+    "../backend/inbox/contacts/all.php?cookie=" + loggedUser
   );
   try {
     data = JSON.parse(data);

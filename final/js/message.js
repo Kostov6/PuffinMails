@@ -1,3 +1,16 @@
+let selectedFilter = new URLSearchParams(window.location.search).get("filter");
+if (selectedFilter == "all") {
+  showInbox("");
+} else if (selectedFilter == "group") {
+  showInbox(4);
+} else if (selectedFilter == "sent") {
+  showInbox("send");
+} else if (selectedFilter == "draft") {
+  showInbox(6);
+} else if (selectedFilter == "lecturer") {
+  showInbox(5);
+}
+
 function showMessage(messageId) {
   document.getElementById("message_container").style.display = "block";
   document.getElementById("inbox_container").style.display = "none";
