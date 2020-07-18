@@ -6,9 +6,11 @@ if (selectedFilter == "all") {
 } else if (selectedFilter == "sent") {
   showInbox("send");
 } else if (selectedFilter == "draft") {
-  showInbox(6);
+  showDraftInbox();
 } else if (selectedFilter == "lecturer") {
   showInbox(5);
+} else if (selectedFilter == "groupOptions") {
+  showProperOption(getOptionState());
 }
 
 function showMessage(messageId) {
@@ -21,7 +23,7 @@ function showMessage(messageId) {
 
 function loadMessage(messageId) {
   let data = synchGETRequest(
-    "http://localhost/Project/backend/inbox/messages/view.php?cookie=" +
+    "../backend/inbox/messages/view.php?cookie=" +
       loggedUser +
       "&id=" +
       messageId
@@ -35,7 +37,11 @@ function loadMessage(messageId) {
   document.getElementById("message_content").innerHTML = data.content;
   document.getElementById("message_thema").innerHTML = data.title;
   document.getElementById("message_sender").innerHTML = data.sender;
-  document.getElementById("message_receivers").innerHTML = data.receivers;
+
+  document.getElementById("message_receivers").innerHTML = "всички";
+  if (data.msgType != 5) {
+    document.getElementById("message_receivers").innerHTML = data.receivers;
+  }
 
   return true;
 }
@@ -48,9 +54,56 @@ function showInbox(filter) {
   loadInbox(filter);
 }
 
+function showDraftInbox() {
+  document.getElementById("message_container").style.display = "none";
+  document.getElementById("inbox_container").style.display = "table";
+  document.getElementById("group_container").style.display = "none";
+
+  loadDraftInbox();
+}
+
+function loadDraftInbox() {
+  loadCommonInboxElements(6, (event) => {
+    let row = event.target;
+    if (row.tagName.toLowerCase() == "td") {
+      row = row.parentElement;
+    }
+    let msgId = row.querySelector("div").innerHTML;
+
+    let data = synchGETRequest(
+      "../backend/inbox/messages/view.php?cookie=" + loggedUser + "&id=" + msgId
+    );
+    try {
+      data = JSON.parse(data);
+    } catch (error) {
+      showErrorMst(data);
+      return false;
+    }
+    window.location.assign(
+      "send.php?to=" +
+        data.receivers +
+        "&title=" +
+        data.title +
+        "&content=" +
+        data.content
+    );
+  });
+}
+
 function loadInbox(filter) {
+  loadCommonInboxElements(filter, (event) => {
+    let row = event.target;
+    if (row.tagName.toLowerCase() == "td") {
+      row = row.parentElement;
+    }
+    let msgId = row.querySelector("div").innerHTML;
+    showMessage(msgId);
+  });
+}
+
+function loadCommonInboxElements(filter, onclickFunction) {
   let data = synchGETRequest(
-    "http://localhost/Project/backend/inbox/messages/inbox.php?cookie=" +
+    "../backend/inbox/messages/inbox.php?cookie=" +
       loggedUser +
       "&filter=" +
       filter
@@ -77,7 +130,7 @@ function loadInbox(filter) {
     sender.innerHTML = message.sender;
 
     let date = document.createElement("td");
-    date.innerHTML = message.date_send;
+    date.innerHTML = message.time_sent;
 
     let msgId = document.createElement("div");
     msgId.innerHTML = message.msgId;
@@ -88,15 +141,8 @@ function loadInbox(filter) {
     row.appendChild(date);
     row.appendChild(msgId);
 
-    row.addEventListener("click", (event) => {
-      let row = event.target;
-      if (row.tagName.toLowerCase() == "td") {
-        row = row.parentElement;
-      }
-      let msgId = row.querySelector("div").innerHTML;
-      showMessage(msgId);
-    });
-
     inbox_container.appendChild(row);
+
+    row.addEventListener("click", onclickFunction);
   }
 }

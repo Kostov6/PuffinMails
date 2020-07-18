@@ -29,9 +29,10 @@ CREATE TABLE MESSAGE(
     title VARCHAR(128) NOT NULL,
     content VARCHAR(2048) NOT NULL,
     senderId INT,
-    date_send DATE,
+    time_sent DATE,
     FOREIGN KEY(senderId) REFERENCES USERS(userId)
 );
+
 CREATE TABLE USERS(
     userID INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(64) NOT NULL,
@@ -40,6 +41,9 @@ CREATE TABLE USERS(
     last_name VARCHAR(64) NOT NULL,
     faculty_number INT NOT NULL UNIQUE,
     number_theme INT NULL UNIQUE,
+    recension_number INT DEFAULT NULL,
+    is_admin INT NOT NULL DEFAULT 0,
+    ban_until date DEFAULT NULL,
     member_of INT NULL,
     FOREIGN KEY(member_of) REFERENCES GROUPS(groupId)
 );

@@ -154,22 +154,7 @@ function getAllInvites() {
   }
   return data;
 }
-/*
-loadInvites([
-  {
-    inviteName: "one",
-    inviteUsername: "1",
-  },
-  {
-    inviteName: "two",
-    inviteUsername: "2",
-  },
-  {
-    inviteName: "three",
-    inviteUsername: "3",
-  },
-]);
-*/
+
 function loadGroupMembers(groupMembers) {
   if (groupMembers.length >= 1) {
     loadMember("fa fa-crown", groupMembers[0]);
@@ -197,22 +182,26 @@ function loadMember(iconClass, member) {
 var leaveGroupButton = document.getElementById("leave_group");
 leaveGroupButton.addEventListener("click", (event) => {
   leaveGroup();
+  location.reload();
 });
 
 var createGroupButton = document.getElementById("create_group");
 createGroupButton.addEventListener("click", (event) => {
   createGroup();
+  location.reload();
 });
 
 var deleteGroupButton = document.getElementById("delete_group");
 deleteGroupButton.addEventListener("click", (event) => {
   deleteGroup();
+  location.reload();
 });
 
 var sendInviteButton = document.getElementById("send_invite");
 sendInviteButton.addEventListener("click", (event) => {
   let user = document.getElementById("invite_name");
   sendInvite(user.value);
+  location.reload();
 });
 
 function loadUsersToKick(kickNames, kickUsernames) {
@@ -281,6 +270,7 @@ function loadInvites(userInvites) {
       let nameEl = inviteItemEl.querySelector("div[class='invite_username']");
       let name = nameEl.innerHTML;
       joinGroup(name);
+      location.reload();
     });
     invite_button.innerHTML = "Приемане";
 

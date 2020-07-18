@@ -1,6 +1,4 @@
 <?php
-	
-	
 	function sendAll() {
 		
 		require ('db.php');

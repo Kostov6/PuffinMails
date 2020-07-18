@@ -1,17 +1,19 @@
-.control_panel {
+#sidebar .control_panel {
   font-size: 12px;
   width: 16em;
+  margin: 0px;
+  padding: 0px;
 }
 
 .control_panel_field {
-  height: 3em;
+  margin: 5px 0 5px;
+  padding: 5px 10px 5px;
   display: flex;
   align-items: center;
 }
-
 .control_panel_field p {
   font-size: 18px;
-  margin-left: 0.25em;
+  margin: 0px;
   flex-grow: 2;
 }
 
@@ -207,24 +209,24 @@
   display: none;
 }
 
-table {
+#inbox_container {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-td,
-th {
+#inbox_container td,
+#inbox_container th {
   text-align: left;
   padding: 8px;
 }
 
-table .row_element:hover {
+#inbox_container table .row_element:hover {
   background-color: #dddddd;
 }
 
 .control_panel_field:hover {
-  background-color: gray;
+  background-color: lightgray;
 }
 
 #report_button {

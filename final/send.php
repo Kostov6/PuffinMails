@@ -2,7 +2,8 @@
 
 <html>
 <?php
-	session_start();
+    session_start();
+    require_once('php/sendIt.php');
 	$showAdminOptions = 0;
 	if(!isset($_SESSION['logged'])) {
         header("Location: login.php");
@@ -24,15 +25,17 @@
                 var showAdminOptions = <?php echo $showAdminOptions; ?>
 
                 if (<?php echo (isset($_SESSION['end']) && $_SESSION['is_admin'] == 0)?'true':'false'; ?>) {
-                    document.getElementById('event').style.display = "block";
                     document.getElementById('anony').style.display = "inline-block";
+                    if (<?php echo (isset($_SESSION['sent']) && $_SESSION['sent'] == false)?'true':'false';?>) {
+                        document.getElementById('event').style.display = "block";
+                    }
                 }
 
                 if (<?php echo isset($_SESSION['member_of'])?'true':'false'; ?>) {
                     document.getElementById('group').style.display = "inline-block";
                 }
 				
-                if (!showAdminOptions) {
+                if (showAdminOptions) {
                     var spot = document.getElementById('options');
 
                     var btn = document.createElement('input');
@@ -42,8 +45,7 @@
                     btn.setAttribute('value','Изпрати до всички');
 
                     spot.appendChild(btn);
-                }
-                else {
+                } else {
                     var elements = document.getElementsByClassName('admin');
 
                     for (var i = 0; i < elements.length; ++i) {
@@ -55,14 +57,14 @@
     </head>
     <body>
         <nav id="sidebar">
-            <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></a>
             <div>
-                <a href="send.php">Напиши</a>
-                <a href="inbox.php" class="pages">Кутия</a>
-                <a href="#" class="pages">Група</a>
-                <a href="#" class="pages">Изпратени</a>
-                <a href="#" class="pages">Чернови</a>
-                <a href="#" class="pages">От лектора</a>
+                <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></img></a>
+                <a href="send.php" class="selected">Напиши</a>
+                <a href="inbox.php?filter=all" class="pages">Кутия</a>
+                <a href="inbox.php?filter=group" class="pages">Изпратени</a>
+                <a href="inbox.php?filter=sent" class="pages">Групови съобщения</a>
+                <a href="inbox.php?filter=draft" class="pages">Чернови</a>
+                <a href="inbox.php?filter=lecturer" class="pages">От лектора</a>
 
                 <div class="control_panel">
                     <div class="control_panel_field">
@@ -72,11 +74,12 @@
                 </div>
 
                 <div class="control_panel">
-                    <div id="group_options" class="control_panel_field">
+                    <div id="group_options" class="control_panel_field" onclick="window.location.assign('inbox.php?filter=groupOptions')">
                         <p>Група</p>
                     </div>
                     <div id="group_members"></div>
                 </div>
+
                 <a href="statistics.php" class="pages admin">Статистики</a>
                 <a href="recensions.php" class="pages admin">Рецензии</a>
                 <a href="reports.php" class="pages admin">Докладвания</a>
@@ -91,7 +94,7 @@
             <form id="form" method="POST" enctype="multipart/form-data" action="">
                 <div id="info">
                     <div class="infoS">До:</div> <input class="infoT" id="to" type="text" name="to" value="<?php if(isset($_GET['to'])) echo $_GET['to']; elseif (isset($_POST['to'])) echo $_POST['to']; ?>"><br>
-                    <div class="infoS">Относно:</div> <input class="infoT" type="text" name="object" value="<?php if (isset($_POST['object'])) echo $_POST['object']; ?>"><br>
+                    <div class="infoS">Относно:</div> <input class="infoT" type="text" name="object" value="<?php if(isset($_GET['title'])) echo $_GET['title']; if (isset($_POST['object'])) echo $_POST['object']; ?>"><br>
                 </div>
                 <div id="options">
                     <input type="submit" class="opt" name="submit" value="Изпрати">
@@ -99,11 +102,10 @@
 					<input type="submit" id="anony" class="opt hidden" name="anonySubmit" value="Анонимно изпращане">
                     <input type="submit" id="group" class="opt hidden" name="sendGroup" value="Групово изпращане">
                 </div>
-                <textarea id="message" name="message" wrap="hard"><?php if (isset($_POST['message'])) echo $_POST['message']; ?></textarea>
+                <textarea id="message" name="message" wrap="hard"><?php if(isset($_GET['content'])) echo $_GET['content']; if (isset($_POST['message'])) echo $_POST['message']; ?></textarea>
             </form>
             <div id="error">
                 <?php
-                    require_once('php/sendIt.php');
                     if ($_POST && $error != "") {
                         echo $error;
                     }

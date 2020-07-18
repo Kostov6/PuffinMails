@@ -20,7 +20,10 @@ function showErrorMst(errorMsg) {
 
 function addContact(user) {
   let data = synchGETRequest(
-    "../backend/inbox/contacts/add.php?cookie=" + loggedUser + "&user=" + user
+    "../backend/inbox/contacts/add.php?cookie=" +
+      loggedUser +
+      "&user=" +
+      user
   );
   try {
     data = JSON.parse(data);
@@ -51,7 +54,8 @@ function getContacts() {
   let output = [];
   let userList = [];
   let data = synchGETRequest(
-    "../backend/inbox/contacts/all.php?cookie=" + loggedUser
+    "../backend/inbox/contacts/all.php?cookie=" +
+      loggedUser
   );
   try {
     data = JSON.parse(data);

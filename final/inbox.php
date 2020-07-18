@@ -10,8 +10,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="stylesheet" href="css/send.css" />
-	  <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" href="css/inboxSend.css" />
+	  <link rel="stylesheet" type="text/css" href="css/inboxNav.css">
     <link rel="stylesheet" href="css/inbox.css" />
     <title>Document</title>
   </head>
@@ -21,8 +21,7 @@
 			<a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></img></a>
       <div>
         <a href="send.php">Напиши</a>
-        <div class="control_panel">
-          <div onclick="showInbox('')" class="control_panel_field">
+          <div onclick="showInbox('')" class="control_panel_field selected">
             <p>Кутия</p>
           </div>
           <div onclick="showInbox('send')"  class="control_panel_field">
@@ -31,13 +30,12 @@
           <div onclick="showInbox(4)" class="control_panel_field">
             <p>Групови съобщения</p>
           </div>
-          <div onclick="showInbox(6)" class="control_panel_field">
+          <div onclick="showDraftInbox()" class="control_panel_field">
             <p>Чернови</p>
           </div>
           <div onclick="showInbox(5)" class="control_panel_field">
-            <p>От Лектора</p>
+            <p>От лектора</p>
           </div>
-        </div>
 
         <div class="control_panel">
           <div class="control_panel_field">
@@ -82,7 +80,7 @@
           </p>
           <h2>Присъединяване в група</h2>
           <p>
-            Тък може да видите всички покани, които сте получили за
+            Тук може да видите всички покани, които сте получили за
             присъединяването към група
           </p>
           <div id="invites">

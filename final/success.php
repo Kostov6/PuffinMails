@@ -8,8 +8,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link rel="stylesheet" type="text/css" href="css/success.css">
         <link rel="stylesheet" type="text/css" href="css/nav.css">
+        <link rel="stylesheet" href="css/inbox.css" />
         <script>
             
             window.onload = function () {
@@ -22,20 +24,36 @@
                 }
             }
         </script>
-        <script src="js/contacts.js"></script>
     </head>
     <body>
         <nav id="sidebar">
-			<a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></img></a>
-            <a href="send.php" class="selected">Напиши</a>
-            <a href="inbox.php" class="pages">Кутия</a>
-            <a href="#" class="pages">Група</a>
-            <a href="#" class="pages">Изпратени</a>
-            <a href="#" class="pages">Чернови</a>
-            <a href="#" class="pages">Контакти</a>
-            <a href="statistics.php" class="pages admin">Статистики</a>
-            <a href="recensions.php" class="pages admin">Рецензии</a>
-            <a href="reports.php" class="pages admin">Докладвания</a>
+            <div>
+                <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></img></a>
+                <a href="send.php" class="selected">Напиши</a>
+                <a href="inbox.php?filter=all" class="pages">Кутия</a>
+                <a href="inbox.php?filter=group" class="pages">Изпратени</a>
+                <a href="inbox.php?filter=sent" class="pages">Групови съобщения</a>
+                <a href="inbox.php?filter=draft" class="pages">Чернови</a>
+                <a href="inbox.php?filter=lecturer" class="pages">От лектора</a>
+
+                <div class="control_panel">
+                    <div class="control_panel_field">
+                        <p id="contact_options">Контакти</p>
+                    </div>
+                    <div id="contact_members"></div>
+                </div>
+
+                <div class="control_panel">
+                    <div id="group_options" class="control_panel_field" onclick="window.location.assign('inbox.php?filter=groupOptions')">
+                        <p>Група</p>
+                    </div>
+                    <div id="group_members"></div>
+                </div>
+
+                <a href="statistics.php" class="pages admin">Статистики</a>
+                <a href="recensions.php" class="pages admin">Рецензии</a>
+                <a href="reports.php" class="pages admin">Докладвания</a>
+            </div>
         </nav>
         <main>
             <div id="success">
@@ -71,12 +89,15 @@
                         $stmt->execute([$_SESSION['userID'], $row['userID']]);
                         $row = $stmt->fetch();
 
-                        if ($row[0] == 0) {
-                            echo "<input onclick='addContact(\"".$_SESSION['username']."\",\"".$to."\")' type='image' id='submit'src='photo/add.png' border='0' alt='Submit'>";
+                        if (!$row) {
+                            echo "<input onclick='addContact(\"".$to."\")' type='image' id='submit'src='photo/add.png' border='0' alt='Submit'>";
                         }
                     }
                 ?>
             </div>
         </main>
     </body>
+    <div id="username" style="display:none"><?php echo $_SESSION["username"];?></div>
+    <script src="js/contacts.js"></script>
+    <script src="js/groupSidebar.js"></script>
 </html>

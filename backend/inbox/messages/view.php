@@ -80,7 +80,7 @@
                 }
             }
         }
-        echo json_encode(array("sender" => $sender, "receivers" => $receivers, "title" => $title, "content" => $content));
+        echo json_encode(array("sender" => $sender, "receivers" => $receivers, "title" => $title, "content" => $content, "msgType" => $msgType));
 
 /*
         $result=$db->select("SELECT username  FROM message INNER JOIN inboxmessages on message.msgId = inboxmessages.msgId INNER JOIN inbox on inbox.inboxId = inboxmessages.inboxId 
@@ -116,10 +116,6 @@
     else if(!existsId($id))
     {
         echo "Id does not exist";
-    }
-    else if(!isMessageIdInUserInbox($id,$cookie))
-    {
-        echo "id does not belong to user's inbox";
     }
     else
     {

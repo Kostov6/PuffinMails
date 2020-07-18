@@ -1,2 +1,2 @@
 
-GET http://localhost/Project/backend/inbox/messages/view.php?cookie=hoseto&id=2       HTTP/1.1
+GET http://localhost/PuffinMails-master/backend/inbox/messages/view.php?cookie=hoseto&id=2       HTTP/1.1
