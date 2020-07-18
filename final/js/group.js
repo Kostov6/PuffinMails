@@ -166,22 +166,7 @@ function getAllInvites() {
   }
   return data;
 }
-/*
-loadInvites([
-  {
-    inviteName: "one",
-    inviteUsername: "1",
-  },
-  {
-    inviteName: "two",
-    inviteUsername: "2",
-  },
-  {
-    inviteName: "three",
-    inviteUsername: "3",
-  },
-]);
-*/
+
 function loadGroupMembers(groupMembers) {
   if (groupMembers.length >= 1) {
     loadMember("fa fa-crown", groupMembers[0]);
