@@ -13,7 +13,7 @@
     function viewInbox($cookie,$filter)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.date_send,u2.username as sender,seen FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType=? ORDER BY date_send DESC",[$cookie,$filter]);
+        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.time_sent,u2.username as sender,seen FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType=? ORDER BY time_sent DESC",[$cookie,$filter]);
         $result=anonymize($result);
 
         echo json_encode($result);
@@ -38,7 +38,7 @@
     function viewAll($cookie)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.date_send,u2.username as sender,seen  FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType != 7 ORDER BY date_send DESC",[$cookie]);
+        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.time_sent,u2.username as sender,seen  FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType != 7 AND m.msgType != 6 ORDER BY time_sent DESC",[$cookie]);
         $result=anonymize($result);
 
         echo json_encode($result);
@@ -48,7 +48,7 @@
     function viewSendMessages($cookie)
     {
         $db = new Db("webproject",'');
-        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.date_send,u2.username as sender,seen  FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND u2.username =? AND m.msgType != 7 ORDER BY date_send DESC",[$cookie,$cookie]);
+        $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.time_sent,u2.username as sender,seen  FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND u2.username =? AND m.msgType != 7 AND m.msgType != 6 ORDER BY time_sent DESC",[$cookie,$cookie]);
         $result=anonymize($result);
         
         echo json_encode($result);
