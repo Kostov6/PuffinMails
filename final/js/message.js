@@ -21,7 +21,7 @@ function showMessage(messageId) {
 
 function loadMessage(messageId) {
   let data = synchGETRequest(
-    "http://localhost/Project/backend/inbox/messages/view.php?cookie=" +
+    "../backend/inbox/messages/view.php?cookie=" +
       loggedUser +
       "&id=" +
       messageId
@@ -50,7 +50,7 @@ function showInbox(filter) {
 
 function loadInbox(filter) {
   let data = synchGETRequest(
-    "http://localhost/Project/backend/inbox/messages/inbox.php?cookie=" +
+    "../backend/inbox/messages/inbox.php?cookie=" +
       loggedUser +
       "&filter=" +
       filter
@@ -77,7 +77,7 @@ function loadInbox(filter) {
     sender.innerHTML = message.sender;
 
     let date = document.createElement("td");
-    date.innerHTML = message.date_send;
+    date.innerHTML = message.time_sent;
 
     let msgId = document.createElement("div");
     msgId.innerHTML = message.msgId;

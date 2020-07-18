@@ -5,8 +5,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/sidebar.css">
-        <link rel="stylesheet" type="text/css" href="css/send.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/nav.css">
+        <link rel="stylesheet" type="text/css" href="css/inbox.css">
         <script type="text/javascript" defer>  
             var statistics = <?php echo json_encode($statistics); ?>;
         </script>
@@ -14,22 +15,15 @@
         <title>Статистики</title>
     </head>
     <body>
-        <nav id="sidebar">
-            <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></img></a>
+    <nav id="sidebar">
             <div>
+                <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></a>
                 <a href="send.php" class="pages">Напиши</a>
-                <div class="control_panel">
-                    <div onclick="showInbox('')" class="control_panel_field">
-                        <p>Кутия</p>
-                    </div>
-                    <div onclick="showInbox('send')"  class="control_panel_field">
-                        <p>Изпратени</p>
-                    </div>
-                    <div onclick="showInbox(6)" class="control_panel_field">
-                        <p>Чернови</p>
-                    </div>
-                </div>
-
+                <a href="inbox.php?filter=all" class="pages">Кутия</a>
+                <a href="inbox.php?filter=group" class="pages">Група</a>
+                <a href="inbox.php?filter=sent" class="pages">Изпратени</a>
+                <a href="inbox.php?filter=draft" class="pages">Чернови</a>
+                
                 <div class="control_panel">
                     <div class="control_panel_field">
                         <p id="contact_options">Контакти</p>
@@ -37,9 +31,9 @@
                     <div id="contact_members"></div>
                 </div>
 
-                <a href="statistics.php" class="selected">Статистики</a>
-                <a href="recensions.php" class="pages">Рецензии</a>
-                <a href="reports.php" class="pages">Докладвания</a>
+                <a href="statistics.php" class="selected admin">Статистики</a>
+                <a href="recensions.php" class="pages admin">Рецензии</a>
+                <a href="reports.php" class="pages admin">Докладвания</a>
             </div>
         </nav>
         <main>
@@ -76,5 +70,6 @@
             </table>
         </main>
     </body>
+    <div id="username" style="display:none"><?php echo $_SESSION["username"];?></div>
     <script type="text/javascript" src="js/contacts.js"></script>
 </html>

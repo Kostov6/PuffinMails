@@ -10,8 +10,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="stylesheet" href="css/send.css" />
-	  <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" href="css/inboxSend.css" />
+	  <link rel="stylesheet" type="text/css" href="css/inboxNav.css">
     <link rel="stylesheet" href="css/inbox.css" />
     <title>Document</title>
   </head>
@@ -82,7 +82,7 @@
           </p>
           <h2>Присъединяване в група</h2>
           <p>
-            Тък може да видите всички покани, които сте получили за
+            Тук може да видите всички покани, които сте получили за
             присъединяването към група
           </p>
           <div id="invites">

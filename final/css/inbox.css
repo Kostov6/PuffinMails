@@ -207,19 +207,19 @@
   display: none;
 }
 
-table {
+#inbox_container {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-td,
-th {
+#inbox_container td,
+#inbox_container th {
   text-align: left;
   padding: 8px;
 }
 
-table .row_element:hover {
+#inbox_container table .row_element:hover {
   background-color: #dddddd;
 }
 

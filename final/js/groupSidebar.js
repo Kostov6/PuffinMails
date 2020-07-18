@@ -40,7 +40,7 @@ function loadMember(iconClass, member) {
 
 function getGroupMembers() {
   let data = synchGETRequest(
-    "http://localhost/Project/backend/inbox/group/members.php?cookie=" +
+    "../backend/inbox/group/members.php?cookie=" +
       loggedUser
   );
   try {

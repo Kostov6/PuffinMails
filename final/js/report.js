@@ -15,7 +15,7 @@ function report(reporter, reported, currentMsg) {
   };
   console.log(reportMsg);
 
-  fetch("..backend/inbox/messages/report.php", {
+  fetch("../backend/inbox/messages/report.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

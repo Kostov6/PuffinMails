@@ -33,12 +33,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = $stmt->fetch();
             $sql = "SELECT * 
                     FROM (message INNER JOIN inboxmessages ON message.msgId = inboxmessages.msgId) INNER JOIN users ON users.userID = inboxmessages.inboxId
-                    WHERE msgType = 3 and senderId = ? and number_theme = ?";
+                    WHERE msgType = 1 and senderId = ? and number_theme = ?";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$_SESSION['userID'], $_SESSION['recension_number']]);
             $row2 = $stmt->fetch();
-            if ($row && !$row2) {
+            if ($row) {
                 $_SESSION['end'] = $row['end_date'];
+                if ($row2) {
+                    $_SESSION['sent'] = true;
+                }
+                else {
+                    $_SESSION['sent'] = false;
+                }
             }
             header('Location: send.php');
         } else {

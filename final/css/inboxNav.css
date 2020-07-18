@@ -1,0 +1,51 @@
+#sidebar {
+  width: 220px;
+  font-size: 18px;
+}
+
+#sidebar div a {
+  display: block;
+  text-decoration: none;
+  margin: 5px 0 5px;
+  padding: 5px 10px 5px;
+  color: rgb(52, 73, 94);
+}
+
+#sidebar div a:hover {
+  background-color: gray;
+}
+
+main {
+  margin-left: 10px;
+  width: 1500px;
+  padding-bottom: 10px;
+}
+
+#profile {
+  display: block;
+  margin: 0 auto;
+}
+
+body {
+  display: flex;
+}
+
+#event {
+  display: none;
+  width: 95%;
+  height: 70px;
+  margin-left: 15px;
+  background-color: lightsalmon;
+  margin-top: 5px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 70px;
+}
+
+#sidebar > div > div {
+  display: block;
+  text-decoration: none;
+  margin: 5px 0 5px;
+  padding: 5px 10px 5px;
+  color: rgb(52, 73, 94);
+}

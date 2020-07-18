@@ -11,7 +11,6 @@ function checkIfAnony($message){
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $to = $_POST['to'];
     $object = $_POST['object'];
     $message = $_POST['message'];
@@ -40,6 +39,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$type, $object, $message, $id]);
+
+        $sql = "SELECT MAX(`msgId`) FROM message WHERE senderId = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+        $msgId = $result["MAX(`msgId`)"];
+
+        $sql = "INSERT INTO inboxmessages (inboxId, msgId)
+                    VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id, $msgId]);
         return;
     }
     if (isset($_SESSION['ban_until']) && $_SESSION['ban_until'] > date('Y-m-d')) {
@@ -125,8 +135,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Няма потребител с тема: $to";
             return;
         }
-        elseif ($_SESSION['recension_number'] == $to) {
-            unset($_SESSION['end']);
+        elseif ($_SESSION['recension_number'] == $to && $type = 1) {
+            $_SESSION['sent'] = true;
         }
     }
     else {
@@ -158,6 +168,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$to, $msgId]);
-    header("Location: success.php?to=" . $too);
+    //header("Location: success.php?to=" . $too);
+    if (headers_sent()) {
+        die("Redirect failed. Please click on this link: <a href=...>");
+    }
+    else{
+        exit(header("Location: success.php?to=" . $too));
+    }
     exit();
 }

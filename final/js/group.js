@@ -13,7 +13,8 @@ var debugState = "groupUser";
 
 function getOptionState() {
   let data = synchGETRequest(
-    "../backend/inbox/group/state.php?cookie=" + loggedUser
+    "../backend/inbox/group/state.php?cookie=" +
+      loggedUser
   );
   try {
     data = JSON.parse(data);
@@ -26,7 +27,8 @@ function getOptionState() {
 
 function getGroupMembers() {
   let data = synchGETRequest(
-    "../backend/inbox/group/members.php?cookie=" + loggedUser
+    "../backend/inbox/group/members.php?cookie=" +
+      loggedUser
   );
   try {
     data = JSON.parse(data);
@@ -50,7 +52,8 @@ function getGroupMembers() {
 function leaveGroup() {
   console.log("Leaving group...");
   let data = synchGETRequest(
-    "../backend/inbox/group/leave.php?cookie=" + loggedUser
+    "../backend/inbox/group/leave.php?cookie=" +
+      loggedUser
   );
   try {
     data = JSON.parse(data);
@@ -64,7 +67,8 @@ function leaveGroup() {
 function createGroup() {
   console.log("Creating group...");
   let data = synchGETRequest(
-    "../backend/inbox/group/create.php?cookie=" + loggedUser
+    "../backend/inbox/group/create.php?cookie=" +
+      loggedUser
   );
   try {
     data = JSON.parse(data);
@@ -78,7 +82,8 @@ function createGroup() {
 function deleteGroup() {
   console.log("Deleting group...");
   let data = synchGETRequest(
-    "../backend/inbox/group/removeGroup.php?cookie=" + loggedUser
+    "../backend/inbox/group/removeGroup.php?cookie=" +
+      loggedUser
   );
   try {
     data = JSON.parse(data);
@@ -92,7 +97,10 @@ function deleteGroup() {
 function sendInvite(user) {
   console.log("Inviting user:" + user + " ...");
   let data = synchGETRequest(
-    "../backend/inbox/group/invite.php?cookie=" + loggedUser + "&user=" + user
+    "../backend/inbox/group/invite.php?cookie=" +
+      loggedUser +
+      "&user=" +
+      user
   );
   try {
     data = JSON.parse(data);
@@ -106,7 +114,10 @@ function sendInvite(user) {
 function removeUser(user) {
   console.log("kicking user " + user + " ...");
   let data = synchGETRequest(
-    "../backend/inbox/group/remove.php?cookie=" + loggedUser + "&user=" + user
+    "../backend/inbox/group/remove.php?cookie=" +
+      loggedUser +
+      "&user=" +
+      user
   );
   try {
     data = JSON.parse(data);
@@ -144,7 +155,8 @@ loadInvites(getAllInvites());
 
 function getAllInvites() {
   let data = synchGETRequest(
-    "../backend/inbox/group/allInvites.php?cookie=" + loggedUser
+    "../backend/inbox/group/allInvites.php?cookie=" +
+      loggedUser
   );
   try {
     data = JSON.parse(data);
