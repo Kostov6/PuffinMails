@@ -4,7 +4,6 @@
 
     function removeUser($user,$contact)
     {
-        echo $user." ".$contact;
         $db = new Db("webproject",'');
 
         $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
