@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="css/send.css" />
-	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	  <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" href="css/inbox.css" />
     <title>Document</title>
   </head>

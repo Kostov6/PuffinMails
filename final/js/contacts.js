@@ -117,7 +117,7 @@ function loadContacts(contacts_usernames) {
     var nameEl = document.createElement("p");
     nameEl.addEventListener("click", (event) => {
       if (window.location.pathname.includes("send.php")) {
-        document.getElementById("to").innerHTML = usernames[i];
+        document.getElementById("to").value = usernames[i];
       } else {
         window.location.assign("send.php?to=" + usernames[i]);
       }

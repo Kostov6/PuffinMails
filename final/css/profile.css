@@ -1,5 +1,5 @@
 #cont {
-	margin: 30px 1%;
+	margin: 30px 10%;
 	width: 520px;
 }
 
@@ -12,7 +12,7 @@ tr {
 }
 
 td {
-	width: 40%;
+	width: 10%;
 	height: 25px;
 	font-size: 18px;
 }
@@ -23,12 +23,12 @@ td {
 
 #submit {
 	margin-top: 5px;
-	float: right;
+	float: left;
 	background-color: rgb(52, 73, 94);
 	border: none;
 	color: white;
-	width: 70px;
-	height: 20px;
+	width: 75px;
+	height: 25px;
 }
 
 #submit:hover {
