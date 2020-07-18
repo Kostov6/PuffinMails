@@ -115,6 +115,13 @@ function loadContacts(contacts_usernames) {
     var badge = document.createElement("i");
     badge.setAttribute("class", "far fa-id-badge");
     var nameEl = document.createElement("p");
+    nameEl.addEventListener("click", (event) => {
+      if (window.location.pathname.includes("send.php")) {
+        document.getElementById("to").innerHTML = usernames[i];
+      } else {
+        window.location.assign("send.php?to=" + usernames[i]);
+      }
+    });
     nameEl.innerHTML = contact;
     var usernameEl = document.createElement("span");
     usernameEl.setAttribute("style", "display:none");
