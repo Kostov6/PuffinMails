@@ -145,4 +145,27 @@ function loadCommonInboxElements(filter, onclickFunction) {
 
     row.addEventListener("click", onclickFunction);
   }
+  
+  function select(filter) {
+  document.getElementById('inbox').setAttribute('class','control_panel_field');
+  document.getElementById('sent').setAttribute('class','control_panel_field');
+  document.getElementById('group').setAttribute('class','control_panel_field no_admin');
+  document.getElementById('draft').setAttribute('class','control_panel_field');
+  document.getElementById('lecturer').setAttribute('class','control_panel_field no_admin');
+  document.getElementById('group_options').setAttribute('class','control_panel_field');
+
+  if (filter == '') {
+    document.getElementById('inbox').setAttribute('class','control_panel_field selected');
+  } else if (filter == 'send') {
+    document.getElementById('sent').setAttribute('class','control_panel_field selected');
+  } else if (filter == 4) {
+    document.getElementById('group').setAttribute('class','control_panel_field no_admin selected');
+  } else if (filter == 'draft') {
+    document.getElementById('draft').setAttribute('class','control_panel_field selected');
+  } else if (filter == 5) {
+    document.getElementById('lecturer').setAttribute('class','control_panel_field no_admin selected');
+  } else if (filter == 'group_options') {
+    document.getElementById('group_options').setAttribute('class','control_panel_field selected');
+  }
+}
 }
