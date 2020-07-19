@@ -45,19 +45,19 @@
 			<a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></img></a>
       <div>
         <a href="send.php">Напиши</a>
-          <div onclick="showInbox('')" class="control_panel_field selected">
+          <div id="inbox" onclick="showInbox('')" class="control_panel_field">
             <p>Кутия</p>
           </div>
-          <div onclick="showInbox('send')"  class="control_panel_field">
+          <div id="sent" onclick="showInbox('send')"  class="control_panel_field">
             <p>Изпратени</p>
           </div>
-          <div onclick="showInbox(4)" class="control_panel_field no_admin">
+          <div id="group" onclick="showInbox(4)" class="control_panel_field no_admin">
             <p>Групови съобщения</p>
           </div>
-          <div onclick="showDraftInbox()" class="control_panel_field">
+          <div id="draft" onclick="showDraftInbox()" class="control_panel_field">
             <p>Чернови</p>
           </div>
-          <div onclick="showInbox(5)" class="control_panel_field no_admin">
+          <div id="lecturer" onclick="showInbox(5)" class="control_panel_field no_admin">
             <p>От лектора</p>
           </div>
 
