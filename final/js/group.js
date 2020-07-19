@@ -293,6 +293,7 @@ groupOptionsButton.addEventListener("click", (event) => {
 });
 
 function showProperOption(state) {
+  select('group_options');
   let user_in_group_panel = document.getElementById("user_in_group_panel");
   let user_not_in_group_panel = document.getElementById(
     "user_not_in_group_panel"
