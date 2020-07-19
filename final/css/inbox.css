@@ -227,6 +227,7 @@
 
 .control_panel_field:hover {
   background-color: lightgray;
+  cursor: pointer;
 }
 
 #report_button {
