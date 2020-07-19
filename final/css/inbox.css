@@ -221,8 +221,9 @@
   padding: 8px;
 }
 
-#inbox_container table .row_element:hover {
+#inbox_container .row_element:hover {
   background-color: #dddddd;
+  cursor: pointer;
 }
 
 .control_panel_field:hover {
