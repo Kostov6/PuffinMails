@@ -61,8 +61,8 @@
                 <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></img></a>
                 <a href="send.php" class="selected">Напиши</a>
                 <a href="inbox.php?filter=all" class="pages">Кутия</a>
-                <a href="inbox.php?filter=group" class="pages">Изпратени</a>
-                <a href="inbox.php?filter=sent" class="pages">Групови съобщения</a>
+                <a href="inbox.php?filter=sent" class="pages">Изпратени</a>
+                <a href="inbox.php?filter=group" class="pages">Групови съобщения</a>
                 <a href="inbox.php?filter=draft" class="pages">Чернови</a>
                 <a href="inbox.php?filter=lecturer" class="pages">От лектора</a>
 
