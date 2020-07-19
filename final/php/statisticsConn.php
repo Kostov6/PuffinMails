@@ -16,14 +16,24 @@
         return false;
     }));
 
-    $statistics['seenPercentage'] = ($seenNumber/count($messages))*100;
+    $statistics['seenPercentage'] = round(($seenNumber/count($messages))*100);
 
-    $sql = "SELECT inboxId, message.msgId, msgType, senderId FROM inboxmessages INNER JOIN message ON inboxmessages.msgId = message.msgId INNER JOIN users ON users.userID = message.senderId WHERE msgType = 4";
-    $groupMessages = $db->select($sql, []);
+    $sql = "SELECT count(msgId), member_of FROM message INNER JOIN users ON users.userID = message.senderId WHERE msgType = 4 GROUP BY member_of ORDER BY count(msgId) DESC";
+    $groupMostMessages = $db->select($sql, [])[0];
 
-    //find group with most messages
-    //find threme with most recensions
-    //find users with most sent messages
+    $statistics['groupMostMsgs'] = $groupMostMessages['member_of'];
+    $statistics['mostGroupMsgs'] = $groupMostMessages['count(msgId)'];
+
+    $sql = "SELECT count(message.msgId), number_theme FROM inboxmessages INNER JOIN message ON inboxmessages.msgId = message.msgId INNER JOIN users ON inboxmessages.inboxId = users.userID WHERE msgType = 1 GROUP BY number_theme ORDER BY count(message.msgId) DESC";
+    $mostRecTheme = $db->select($sql, [])[0];
+
+    $statistics['mostRecTheme'] = $mostRecTheme['number_theme'];
+    $statistics['mostRecOnTheme'] = $mostRecTheme['count(message.msgId)'];
+
+    $sql = "SELECT username, count(msgId) FROM message INNER JOIN users ON senderId = userID WHERE userID != 4 GROUP BY senderId ORDER BY count(msgId) DESC";
+    $userMostMsgSent = $db->select($sql, [])[0]['username'];
+
+    $statistics['userMostMsgSent'] = $userMostMsgSent;
 
     $averageCharsPerMsg = floor(array_sum($lengths)/count($lengths));
 
