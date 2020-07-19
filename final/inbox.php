@@ -14,6 +14,30 @@
 	  <link rel="stylesheet" type="text/css" href="css/inboxNav.css">
     <link rel="stylesheet" href="css/inbox.css" />
     <title>Document</title>
+    <script> 
+      window.onload = function () {
+
+        if (<?php echo (isset($_SESSION['sent']) && $_SESSION['sent'] == false && !$_SESSION['is_admin'])?'true':'false';?>) {
+          document.getElementById('event').style.display = "block";
+        }
+
+        if (<?php echo $_SESSION['is_admin']; ?> == 0) {
+          var elements = document.getElementsByClassName('admin');
+
+          for (var i = 0; i < elements.length; ++i) {
+            elements[i].style.display = "none";
+          }
+				}
+        else {
+          var elements = document.getElementsByClassName('no_admin');
+
+          for (var i = 0; i < elements.length; ++i) {
+          elements[i].style.display = "none";
+          }
+          document.getElementById('no_admin').style.display = "none";
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="username" style="display:none"><?php echo $_SESSION["username"];?></div>
@@ -27,13 +51,13 @@
           <div onclick="showInbox('send')"  class="control_panel_field">
             <p>Изпратени</p>
           </div>
-          <div onclick="showInbox(4)" class="control_panel_field">
+          <div onclick="showInbox(4)" class="control_panel_field no_admin">
             <p>Групови съобщения</p>
           </div>
           <div onclick="showDraftInbox()" class="control_panel_field">
             <p>Чернови</p>
           </div>
-          <div onclick="showInbox(5)" class="control_panel_field">
+          <div onclick="showInbox(5)" class="control_panel_field no_admin">
             <p>От лектора</p>
           </div>
 
@@ -44,15 +68,23 @@
           <div id="contact_members"></div>
         </div>
 
-        <div class="control_panel">
+        <div id="no_admin" class="control_panel">
           <div id="group_options" class="control_panel_field">
             <p>Група</p>
           </div>
           <div id="group_members"></div>
         </div>
+        <a href="statistics.php" class="pages admin">Статистики</a>
+        <a href="recensions.php" class="pages admin">Рецензии</a>
+        <a href="reports.php" class="pages admin">Докладвания</a>
       </div>      
     </nav>
     <main>
+      <div id="event">
+				<?php
+					echo "Направете рецензия на тема ".$_SESSION['recension_number']." и я изпратете анонимно до ".$_SESSION["end"]; 
+				?>
+			</div>
       <div id="group_container">
         <div
           id="user_in_group_panel"

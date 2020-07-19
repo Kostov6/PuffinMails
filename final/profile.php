@@ -42,7 +42,7 @@
 		<nav id="sidebar">
             <div>
                 <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></img></a>
-                <a href="send.php" class="pages">Напиши</a>
+                <a href="send.php" class="selected">Напиши</a>
                 <a href="inbox.php?filter=all" class="pages">Кутия</a>
                 <a href="inbox.php?filter=sent" class="pages">Изпратени</a>
                 <a href="inbox.php?filter=group" class="pages no_admin">Групови съобщения</a>
@@ -69,10 +69,10 @@
             </div>
         </nav>
         <main>
-		<div id="event">
-                <?php
-                    echo "Направете рецензия на тема ".$_SESSION['recension_number']." и я изпратете анонимно до ".$_SESSION["end"]; 
-                ?>
+			<div id="event">
+				<?php
+					echo "Направете рецензия на тема ".$_SESSION['recension_number']." и я изпратете анонимно до ".$_SESSION["end"]; 
+				?>
 			</div>
 			<div id="cont">
 				<h3>Потребителска информация:</h3>
