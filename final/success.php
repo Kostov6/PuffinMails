@@ -22,6 +22,13 @@
                         elements[i].setAttribute('class', 'pages admin hidden');
                     }
                 }
+		else {
+		    var elements = document.getElementsByClassName('no_admin');
+
+                    for (var i = 0; i < elements.length; ++i) {
+                        elements[i].setAttribute('class', 'pages no_admin hidden');
+                    }
+		}
             }
         </script>
     </head>
@@ -32,9 +39,9 @@
                 <a href="send.php" class="selected">Напиши</a>
                 <a href="inbox.php?filter=all" class="pages">Кутия</a>
                 <a href="inbox.php?filter=sent" class="pages">Изпратени</a>
-                <a href="inbox.php?filter=group" class="pages">Групови съобщения</a>
+                <a href="inbox.php?filter=group" class="pages no_admin">Групови съобщения</a>
                 <a href="inbox.php?filter=draft" class="pages">Чернови</a>
-                <a href="inbox.php?filter=lecturer" class="pages">От лектора</a>
+                <a href="inbox.php?filter=lecturer" class="pages no_admin">От лектора</a>
 
                 <div class="control_panel">
                     <div class="control_panel_field">
