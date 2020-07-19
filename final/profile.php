@@ -16,23 +16,25 @@
 		<script> 
             window.onload = function () {
 
-                if (<?php echo (isset($_SESSION['sent']) && $_SESSION['sent'] == false)?'true':'false';?>) {
+                if (<?php echo (isset($_SESSION['sent']) && $_SESSION['sent'] == false && !$_SESSION['is_admin'])?'true':'false';?>) {
                         document.getElementById('event').style.display = "block";
-                    }
+                }
+
 				if (<?php echo $_SESSION['is_admin']; ?> == 0) {
                     var elements = document.getElementsByClassName('admin');
 
                     for (var i = 0; i < elements.length; ++i) {
                         elements[i].setAttribute('class', 'pages admin hidden');
                     }
-		    else {
-			var elements = document.getElementsByClassName('no_admin');
+				}
+				else {
+				    var elements = document.getElementsByClassName('no_admin');
 
-			    for (var i = 0; i < elements.length; ++i) {
-				elements[i].setAttribute('class', 'pages no_admin hidden');
-			    }
-		   }
-                }
+					for (var i = 0; i < elements.length; ++i) {
+					elements[i].setAttribute('class', 'pages no_admin hidden');
+					}
+					document.getElementById('no_admin').style.display = "none";
+				}
             }
         </script>
     </head>
@@ -54,7 +56,7 @@
                     <div id="contact_members"></div>
                 </div>
 
-                <div class="control_panel">
+                <div id="no_admin" class="control_panel">
                     <div id="group_options" class="control_panel_field" onclick="window.location.assign('inbox.php?filter=groupOptions')">
                         <p>Група</p>
                     </div>
