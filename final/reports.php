@@ -19,6 +19,7 @@
                 <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></a>
                 <a href="send.php" class="pages">Напиши</a>
                 <a href="inbox.php?filter=all" class="pages">Кутия</a>
+                <a href="inbox.php?filter=group" class="pages">Група</a>
                 <a href="inbox.php?filter=sent" class="pages">Изпратени</a>
                 <a href="inbox.php?filter=draft" class="pages">Чернови</a>
 

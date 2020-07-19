@@ -20,6 +20,7 @@
                 <a href="profile.php"><img id="profile" width="70" src="photo/profile.png"></a>
                 <a href="send.php" class="pages">Напиши</a>
                 <a href="inbox.php?filter=all" class="pages">Кутия</a>
+                <a href="inbox.php?filter=group" class="pages">Група</a>
                 <a href="inbox.php?filter=sent" class="pages">Изпратени</a>
                 <a href="inbox.php?filter=draft" class="pages">Чернови</a>
                 
@@ -65,6 +66,26 @@
                 <tr>
                     <td>Процент на прочетени съобщения</td>
                     <td id="seen_percentage"></td>
+                </tr>
+                <tr>
+                    <td>Най-комуникираща група</td>
+                    <td id="most_msg_group"></td>
+                </tr>
+                <tr>
+                    <td>Брой съобщения от най-комуникиращата група</td>
+                    <td id="most_msg_for_group"></td>
+                </tr>
+                <tr>
+                    <td>Тема получила най-много рецензии</td>
+                    <td id="most_rec_theme"></td>
+                </tr>
+                <tr>
+                    <td>Брой рецензии на най-рецензирана тема</td>
+                    <td id="most_rec_for_theme"></td>
+                </tr>
+                <tr>
+                    <td>Потребител изпратил най-много съобщения</td>
+                    <td id="user_most_msg"></td>
                 </tr>
             </table>
         </main>
