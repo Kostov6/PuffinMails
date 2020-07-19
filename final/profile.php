@@ -16,9 +16,9 @@
 		<script> 
             window.onload = function () {
 
-                if (<?php echo (isset($_SESSION['end']) && $_SESSION['is_admin'] == 0)?'true':'false'; ?>) {
-                    document.getElementById('event').style.display = "block";
-				}
+                if (<?php echo (isset($_SESSION['sent']) && $_SESSION['sent'] == false)?'true':'false';?>) {
+                        document.getElementById('event').style.display = "block";
+                    }
 				if (<?php echo $_SESSION['is_admin']; ?> == 0) {
                     var elements = document.getElementsByClassName('admin');
 
