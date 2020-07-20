@@ -112,10 +112,46 @@
 				<h3>Статистика:</h3>
 				<table>
 					<tr>
-						<td>Брой изпратени съобщения:</td>
+						<td>Брой непрочетени съобщения:</td>
 						<td class="right">
 							<?php 
 								$conn = new PDO("mysql:host=localhost:3306;dbname=webproject", "root", "");
+								$sql = "SELECT *
+										FROM message INNER JOIN inboxmessages ON message.msgId = inboxmessages.msgId
+										WHERE inboxId = ? and msgType < 6 and seen = 0";
+    							$stmt = $conn->prepare($sql);
+								$stmt->execute([$_SESSION['userID']]);
+								$row = $stmt->fetchAll();
+								$num = 0;
+								foreach ($row as $row) {
+									$num = $num + 1;
+								}
+								echo $num;
+							?>
+						</td>
+					</tr>
+					<tr>
+						<td>Брой прочетени съобщения:</td>
+						<td class="right">
+							<?php 
+								$sql = "SELECT *
+										FROM message INNER JOIN inboxmessages ON message.msgId = inboxmessages.msgId
+										WHERE inboxId = ? and msgType < 6 and seen = 1";
+    							$stmt = $conn->prepare($sql);
+								$stmt->execute([$_SESSION['userID']]);
+								$row = $stmt->fetchAll();
+								$num = 0;
+								foreach ($row as $row) {
+									$num = $num + 1;
+								}
+								echo $num;
+							?>
+						</td>
+					</tr>
+					<tr>
+						<td>Брой изпратени съобщения:</td>
+						<td class="right">
+							<?php 
 								$sql = "SELECT * FROM message WHERE senderId = ? and msgType < 6";
     							$stmt = $conn->prepare($sql);
 								$stmt->execute([$_SESSION['userID']]);
