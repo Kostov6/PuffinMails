@@ -114,6 +114,7 @@ function removeUser(user) {
     showErrorMst(data);
     return false;
   }
+  location.reload();
   return true;
 }
 

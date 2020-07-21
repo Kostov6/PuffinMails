@@ -37,7 +37,6 @@
 				}
             }
         </script>
-	<title>Профил</title>
     </head>
     <body>
 		<nav id="sidebar">

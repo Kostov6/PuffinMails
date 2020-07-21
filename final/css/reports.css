@@ -20,7 +20,7 @@
 }
 
 #bans {
-    width: 50%;
+    width: 80%;
     font-size: 18px;
 }
 
@@ -31,4 +31,8 @@
     color: white;
     margin-top: 5px;
     height: 20px;
+}
+
+h3 {
+    font-size: 22px;
 }

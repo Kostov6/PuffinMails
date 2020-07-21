@@ -23,5 +23,5 @@ function report(reporter, reported, currentMsg) {
     body: JSON.stringify(reportMsg),
   })
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => window.location.assign('inbox.php?filter=all'));
 }

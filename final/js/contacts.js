@@ -31,6 +31,7 @@ function addContact(user) {
     showErrorMst(data);
     return false;
   }
+  location.reload();
   return true;
 }
 

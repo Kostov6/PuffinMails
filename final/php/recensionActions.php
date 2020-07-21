@@ -38,7 +38,7 @@
         foreach ($usersRec as $user) {
             $title = "Рецензия";
             $message = "Имате да направите рецензия на тема №" . $user['recension_number'];
-            sendMessage($senderId, $user['userID'], 0, $title, $message, $db);
+            sendMessage($senderId, $user['userID'], 5, $title, $message, $db);
         }
     }
 

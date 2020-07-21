@@ -38,7 +38,7 @@
         <main>
             <h3>Забрани</h3>
             <table id="bans">
-                <tr>
+                <tr class="titles">
                     <td>Име</td>
                     <td>Факултетен номер</td>
                     <td>Забранa до</td>

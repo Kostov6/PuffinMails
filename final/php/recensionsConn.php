@@ -38,7 +38,7 @@
             
             if (empty($errors)) { //TODO TEST
                 $usersRec = distributeRecensions($usersRec, $db);
-                //sendRecensionMessages($userId, $usersRec, $db);  
+                sendRecensionMessages($userId, $usersRec, $db);  
                 startEvent('Рецензии', $endDate, $db);
 
                 $sql = "SELECT * FROM events WHERE end_date > CURRENT_DATE()";
