@@ -6,6 +6,7 @@
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link rel="stylesheet" type="text/css" href="css/nav.css">
         <link rel="stylesheet" type="text/css" href="css/inbox.css">
+        <link rel="stylesheet" type="text/css" href="css/reports.css">
         <script type="text/javascript" defer>  
             var reports = <?php echo json_encode($reports); ?>;
             var bannedUsers = <?php echo json_encode($bannedUsers); ?>;
@@ -35,21 +36,21 @@
             </div>
         </nav>
         <main>
-            <h3>Докладвания</h3>
-            <table id="reports">
-                <tr>
-                    <td>Докладвал</td>
-                    <td>Докладван</td>
-                    <td>Време на изпращане</td>
-                </tr>
-            </table>
             <h3>Забрани</h3>
             <table id="bans">
                 <tr>
                     <td>Име</td>
                     <td>Факултетен номер</td>
-                    <td>Забранено изпращане до</td>
-                    <td></td>
+                    <td>Забранa до</td>
+                    <td>Премахни забрана</td>
+                </tr>
+            </table>
+            <h3>Докладвания</h3>
+            <table id="reports">
+                <tr class="titles">
+                    <td>Докладвал</td>
+                    <td>Докладван</td>
+                    <td>Време на изпращане</td>
                 </tr>
             </table>
         </main>

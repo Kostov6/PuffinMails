@@ -6,6 +6,7 @@
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link rel="stylesheet" type="text/css" href="css/nav.css">
         <link rel="stylesheet" type="text/css" href="css/inbox.css">
+        <link rel="stylesheet" type="text/css" href="css/report.css">
         <script type="text/javascript">
             var errors = <?php echo json_encode($errors); ?>;
             var report = <?php echo json_encode($report); ?>;
@@ -39,7 +40,7 @@
             <form method="post" action="" id="ban" onsubmit="return validate();">
                 <label for="banUntil">Забрани изпращане до:</label>
                 <input name="banUntil" type="date" id="ban_date">
-                <input type="submit" value="Забрани изпращане!">
+                <input type="submit" value="Забрани изпращане">
                 <div id="date_error" class="error"></div>
             </form>
             <div id="ban_info">

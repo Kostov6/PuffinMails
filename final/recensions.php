@@ -6,6 +6,7 @@
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <link rel="stylesheet" type="text/css" href="css/nav.css">
         <link rel="stylesheet" type="text/css" href="css/inbox.css">
+        <link rel="stylesheet" type="text/css" href="css/recensions.css">
         <script type="text/javascript" defer>
             var users = <?php echo json_encode($users); ?>;
             var events = <?php echo json_encode($events); ?>;
@@ -40,13 +41,10 @@
             <form method="POST" action="" id="add_event" onsubmit="return validate();">
                 <label for="end_date">Краен срок:</label>
                 <input type="date" name="end_date" id="end_date" required>
-                <input type="submit" name="submit" value="Разпредели рецензии!">
+                <input id="submit" type="submit" name="submit" value="Разпредели рецензии">
                 <div id="date_error" class="error"></div>
             </form>
             <table id="events" class="hidden">
-                <tr>
-                    <td>Краен срок</td>
-                </tr>
             </table>
             <table id="recensions">
                 <tr>
