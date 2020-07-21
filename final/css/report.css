@@ -1,0 +1,23 @@
+.container {
+    background-color: rgb(52, 73, 94);
+	border: none;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.container > div {
+    height: 25px;
+}
+
+main > p {
+    font-size: 18px;
+    padding: 5px 15px 5px;
+    height: 100%;
+    margin: 0;
+    border: 2px solid rgb(52, 73, 94);
+}
+
+.error {
+    color: red;
+}

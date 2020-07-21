@@ -1,0 +1,21 @@
+#statistics {
+    width: 50%;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+#statistics tr {
+    border: 2px solid rgb(52, 73, 94);
+}
+
+#statistics td {
+    height: 25px;
+}
+
+.result {
+    text-align: center;
+}
+
+.title {
+    padding-left: 5px;
+}
