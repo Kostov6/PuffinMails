@@ -32,6 +32,7 @@
                 }
             }
         </script>
+	<title>Успешно изпращане</title>    
     </head>
     <body>
         <nav id="sidebar">
