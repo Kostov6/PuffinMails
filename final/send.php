@@ -62,6 +62,7 @@
                 }
             }
         </script>
+	<title>Напиши</title>
     </head>
     <body>
         <nav id="sidebar">
