@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/login.css">
-    <title>login</title>
+    <title>Поща</title>
 </head>
 
 <body>
