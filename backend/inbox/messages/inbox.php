@@ -52,7 +52,7 @@
         $userId=$result[0]["userId"];
 
         
-        $result=$db->select("SELECT msgType,msgId,title,time_sent FROM message WHERE msgType!=6 AND senderId=?",[$userId]);
+        $result=$db->select("SELECT msgType,msgId,title,time_sent FROM message WHERE msgType != 7 AND msgType!=6 AND senderId=?",[$userId]);
         foreach($result as &$row)
         {
             $row["sender"] = $cookie;

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include '../common/common.php';
     include 'groupCommons.php';
 
@@ -26,6 +27,8 @@
             //set member_of of user
             $db->insert("UPDATE users SET member_of=? WHERE userId=?",[$groupId,$userId]);
            
+            $_SESSION['member_of'] = $groupId;
+
             echo '{"status":"Invitation accepted. You are now part of a group"}';
         }
         else

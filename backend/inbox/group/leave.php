@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include '../common/common.php';
     include 'groupCommons.php';
 
@@ -13,6 +14,8 @@
         //set user's member_of to NULL
          $db->insert("UPDATE users SET member_of = NULL WHERE userId = ?",[$id]);
         
+        unset($_SESSION['member_of']);
+
         echo '{"status":"User left the group"}';
     }
 

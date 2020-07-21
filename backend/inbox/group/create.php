@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include '../common/common.php';
     include 'groupCommons.php';
 
@@ -17,6 +18,8 @@
         
         //set memeber_of of the leader
         $db->insert("UPDATE users SET member_of = ? WHERE userId = ?",[$groupId,$id]);
+
+        $_SESSION['member_of'] = $groupId;
         
         echo '{"status":"Group created successfully"}';
     }
