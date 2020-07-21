@@ -4,20 +4,25 @@ window.onload = function () {
 
     for (var i = 0; i < users.length; ++i) {
         var tr = document.createElement('tr');
+        tr.setAttribute('class', 'row');
         
         var td = document.createElement('td');
+        td.setAttribute('class', 'title');
         td.appendChild(document.createTextNode(users[i]['first_name'] + ' ' + users[i]['last_name']));
         tr.appendChild(td);
 
         td = document.createElement('td');
+        td.setAttribute('class', 'result');
         td.appendChild(document.createTextNode(users[i]['faculty_number']));
         tr.appendChild(td);
 
         td = document.createElement('td');
+        td.setAttribute('class', 'result');
         td.appendChild(document.createTextNode(users[i]['number_theme']));
         tr.appendChild(td);
 
         td = document.createElement('td');
+        td.setAttribute('class', 'result');
         td.appendChild(document.createTextNode(users[i]['recension_number']));
         tr.appendChild(td);
 
@@ -30,21 +35,18 @@ window.onload = function () {
         var eventTable = document.getElementById('events');
         eventTable.setAttribute('class','events');
 
-        //check if event has ended
+        var tr = document.createElement('tr');
 
-        for (var i = 0; i < events.length; ++i) {
-            var tr = document.createElement('tr');
-            
-           /*var td = document.createElement('td');
-            td.appendChild(document.createTextNode(events[i]['event_title']));
-            tr.appendChild(td);*/
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode('Краен срок: '));
+        tr.appendChild(td);
 
-            td = document.createElement('td');
-            td.appendChild(document.createTextNode(events[i]['end_date']));
-            tr.appendChild(td);
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode(events[0]['end_date']));
+        tr.appendChild(td);
 
-            eventTable.appendChild(tr);
-        }
+        eventTable.appendChild(tr);
+
     }
 
     var form = document.getElementById('add_event');

@@ -3,6 +3,7 @@ window.onload = function () {
 
     for (var i = 0; i < reports.length; ++i) {
         var tr = document.createElement('tr');
+        tr.setAttribute('class','row');
         
         var td = document.createElement('td');
         td.appendChild(document.createTextNode(reports[i]['first_name'] + ' ' + reports[i]['last_name']));
@@ -56,7 +57,7 @@ window.onload = function () {
         var createClickHandler = function(button) {
             return function() {
                 var userId = button.getAttribute('userId');
-                window.location = './unban.php?userId=' + userId;
+                window.location = 'php/unban.php?userId=' + userId;
             };
         };
 

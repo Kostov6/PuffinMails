@@ -1,26 +1,28 @@
 window.onload = function () {
     var main = document.getElementsByTagName('main')[0];
     var ban = document.getElementById('ban');
+    var bigDiv = document.createElement('div');
+    bigDiv.setAttribute('class','container');
 
-    var h4 = document.createElement('h4');
-    h4.appendChild(document.createTextNode(report['title']));
-    main.insertBefore(h4, ban);
+    var h3 = document.createElement('h3');
+    h3.appendChild(document.createTextNode(report['title']));
 
     var div = document.createElement('div');
     div.appendChild(document.createTextNode('от: ' + report['first_name'] + ' ' + report['last_name'] + ', ' + report['faculty_number']));
-    main.insertBefore(div, ban);
+    bigDiv.appendChild(div);
 
     div = document.createElement('div');
     div.appendChild(document.createTextNode('докладван: ' + report['reported']['first_name'] + ' ' + report['reported']['last_name'] + ', ' + report['reported']['faculty_number']));
-    main.insertBefore(div, ban);
+    bigDiv.appendChild(div);
 
     div = document.createElement('div');
     div.appendChild(document.createTextNode('изпратено на: ' + report['time_sent']));
-    main.insertBefore(div, ban);
+    bigDiv.appendChild(div);
 
-    var p = document.createElement('p');
-    p.appendChild(document.createTextNode(report['content']));
-    main.insertBefore(p, ban);
+    main.insertBefore(bigDiv, ban);
+
+    bigDiv.appendChild(document.getElementById('ban'));    
+    bigDiv.appendChild(document.getElementById('ban_info'));   
 
     var currDate = new Date();
     var banUntil = new Date(report['reported']['ban_until']);
@@ -30,11 +32,19 @@ window.onload = function () {
 
         document.getElementById('ban_info').textContent = 'Потребителя има забрана да изпраща до: ' + report['reported']['ban_until'];
     } 
-    else if (report['reported']['seen']) {
+    else if (report['reported']['seen'] == 1) {
         document.getElementById('ban').setAttribute('class','hidden');
 
         document.getElementById('ban_info').textContent = 'Потребителя вече е получил забрана от това докладване!';
+    } else {
+        document.getElementById('ban_info').setAttribute('class', 'hidden');
     }
+
+    main.insertBefore(h3, bigDiv);
+
+    var p = document.createElement('p');
+    p.appendChild(document.createTextNode(report['content']));
+    main.appendChild(p);
 
     var form = document.getElementById('ban');
 
