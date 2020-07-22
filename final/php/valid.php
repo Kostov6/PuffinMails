@@ -1,4 +1,5 @@
 <?php
+include "../backend/inbox/common/db.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $fn = $_POST['fn'];
@@ -6,7 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = "";
 
     try{
-        $conn = new PDO("mysql:host=localhost:3306;dbname=webproject", "root", "");
+        $db=new Db();
+        $conn = $db->getConnection();
     } catch (PDOException $e) {
         $error = "В момента има проблем с базата данни, моля опитайте по-късно!";
         return;

@@ -2,7 +2,7 @@
     require ('authorization.php');
     require ('db.php');
 
-    $db = new Db('webproject','');
+    $db = new Db();
 
     if (!isset($_GET['reportId'])) {
         header("Location: reports.php");

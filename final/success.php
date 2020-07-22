@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+
+    include "../backend/inbox/common/db.php";
     session_start();
     if(!isset($_SESSION['logged'])) {
         header("Location: login.php");
@@ -83,7 +85,9 @@
                     }
                     else {
                         echo "Съобщението бе успешно изпратено до потребител с име ".$to."! ";
-                        $conn = new PDO("mysql:host=localhost:3306;dbname=webproject", "root", "");
+
+                        $db=new Db();
+                        $conn = $db->getConnection();
                         $sql = "SELECT userID FROM users WHERE username = ?";
                         $stmt = $conn->prepare($sql);
                         $stmt->execute([$to]);

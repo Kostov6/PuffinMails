@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+
+	include "../backend/inbox/common/db.php";
 	session_start();
 	if(!isset($_SESSION['logged'])) {
 		header("Location: login.php");
@@ -115,7 +117,8 @@
 						<td>Брой непрочетени съобщения:</td>
 						<td class="right">
 							<?php 
-								$conn = new PDO("mysql:host=localhost:3306;dbname=webproject", "root", "");
+       						    $db=new Db();
+       							$conn = $db->getConnection();
 								$sql = "SELECT *
 										FROM message INNER JOIN inboxmessages ON message.msgId = inboxmessages.msgId
 										WHERE inboxId = ? and msgType < 6 and seen = 0";

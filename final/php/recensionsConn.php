@@ -4,7 +4,7 @@
     require ('db.php');
     require ('sendMessage.php');
     require ('recensionActions.php');
-    $db = new Db('webproject','');
+    $db = new Db();
 
     $userId = $_SESSION['userID'];
 

@@ -7,7 +7,7 @@
         exit();
     }
 
-    $db = new Db('webproject','');
+    $db = new Db();
 
     $userId = $_GET['userId'];
 

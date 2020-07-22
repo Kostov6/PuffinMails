@@ -1,5 +1,6 @@
 <?php
 require ('sendAll.php');
+include "../backend/inbox/common/db.php";
 function checkIfAnony($message){
     $exp = "/".$_SESSION['username']."|".$_SESSION['faculty_number']."|".$_SESSION['first_name']."|".$_SESSION['last_name']."/";
     if (preg_match( $exp, $message)) {
@@ -19,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = 0;
 
     try{
-        $conn = new PDO("mysql:host=localhost:3306;dbname=webproject", "root", "");
+        $db=new Db();
+        $conn = $db->getConnection();
     } catch (PDOException $e) {
         $error = "В момента има проблем с базата данни, моля опитайте по-късно!";
         return;

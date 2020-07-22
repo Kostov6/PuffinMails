@@ -2,7 +2,7 @@
     require ('php/authorization.php');    
     require ('php/db.php');
 
-    $db = new Db('webproject','');
+    $db = new Db();
 
     $sql = "SELECT inboxId, seen, message.msgId, msgType, content, senderId FROM inboxmessages INNER JOIN message ON inboxmessages.msgId = message.msgId WHERE msgType != 6 AND msgType != 7 AND msgType != 8";
     $messages = $db->select($sql, []);

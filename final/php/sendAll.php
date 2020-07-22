@@ -5,7 +5,7 @@
 		require ('sendMessage.php');
 		require ('authorization.php');
 
-		$db = new Db('webproject','');
+		$db = new Db();
 
 		$title = $_POST['object'];
 		$message = $_POST['message'];

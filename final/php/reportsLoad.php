@@ -2,7 +2,7 @@
     require ('authorization.php');    
     require ('db.php');
 
-    $db = new Db('webproject','');
+    $db = new Db();
 
     $userId = $_SESSION['userID'];
 

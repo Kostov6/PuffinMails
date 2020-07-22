@@ -47,25 +47,43 @@ function loadMessage(messageId) {
 }
 
 function select(filter) {
-  document.getElementById('inbox').setAttribute('class','control_panel_field');
-  document.getElementById('sent').setAttribute('class','control_panel_field');
-  document.getElementById('group').setAttribute('class','control_panel_field no_admin');
-  document.getElementById('draft').setAttribute('class','control_panel_field');
-  document.getElementById('lecturer').setAttribute('class','control_panel_field no_admin');
-  document.getElementById('group_options').setAttribute('class','control_panel_field');
+  document.getElementById("inbox").setAttribute("class", "control_panel_field");
+  document.getElementById("sent").setAttribute("class", "control_panel_field");
+  document
+    .getElementById("group")
+    .setAttribute("class", "control_panel_field no_admin");
+  document.getElementById("draft").setAttribute("class", "control_panel_field");
+  document
+    .getElementById("lecturer")
+    .setAttribute("class", "control_panel_field no_admin");
+  document
+    .getElementById("group_options")
+    .setAttribute("class", "control_panel_field");
 
-  if (filter == '') {
-    document.getElementById('inbox').setAttribute('class','control_panel_field selected');
-  } else if (filter == 'send') {
-    document.getElementById('sent').setAttribute('class','control_panel_field selected');
+  if (filter == "") {
+    document
+      .getElementById("inbox")
+      .setAttribute("class", "control_panel_field selected");
+  } else if (filter == "send") {
+    document
+      .getElementById("sent")
+      .setAttribute("class", "control_panel_field selected");
   } else if (filter == 4) {
-    document.getElementById('group').setAttribute('class','control_panel_field no_admin selected');
-  } else if (filter == 'draft') {
-    document.getElementById('draft').setAttribute('class','control_panel_field selected');
+    document
+      .getElementById("group")
+      .setAttribute("class", "control_panel_field no_admin selected");
+  } else if (filter == "draft") {
+    document
+      .getElementById("draft")
+      .setAttribute("class", "control_panel_field selected");
   } else if (filter == 5) {
-    document.getElementById('lecturer').setAttribute('class','control_panel_field no_admin selected');
-  } else if (filter == 'group_options') {
-    document.getElementById('group_options').setAttribute('class','control_panel_field selected');
+    document
+      .getElementById("lecturer")
+      .setAttribute("class", "control_panel_field no_admin selected");
+  } else if (filter == "group_options") {
+    document
+      .getElementById("group_options")
+      .setAttribute("class", "control_panel_field selected");
   }
 }
 
@@ -80,7 +98,7 @@ function showInbox(filter) {
 }
 
 function showDraftInbox() {
-  select('draft');
+  select("draft");
 
   document.getElementById("message_container").style.display = "none";
   document.getElementById("inbox_container").style.display = "table";
@@ -144,6 +162,19 @@ function loadCommonInboxElements(filter, onclickFunction) {
   let inbox_container = document.getElementById("inbox_container");
   inbox_container.innerHTML =
     "<tr><th>Заглавие</th><th>Изпращач</th><th>Дата</th></tr>";
+
+  if (data.length == 0) {
+    let row = document.createElement("tr");
+
+    let empty = document.createElement("td");
+    empty.innerHTML = "Кутията е празна";
+
+    row.appendChild(empty);
+
+    inbox_container.appendChild(row);
+
+    return;
+  }
   for (message of data) {
     let row = document.createElement("tr");
     row.setAttribute("class", "row_element");
