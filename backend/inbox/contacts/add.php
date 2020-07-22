@@ -5,7 +5,7 @@
     function addUser($user,$contact)
     {
 
-        $db = new Db("webproject",'');
+        $db = new Db();
         
         $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $id1=$result[0]["userID"];

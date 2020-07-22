@@ -3,11 +3,16 @@
     class Db
     {
         private $connection;
-   
-        public function __construct($dbName, $userPassword)
+        
+        public function __construct()
         {
+            
             $dbhost = "localhost";
             $userName = "root"; 
+    
+            $userPassword="";
+            $dbName = "webproject"; 
+
             try{
                 $this->connection = new PDO("mysql:host=".$dbhost.";dbname=".$dbName, $userName, $userPassword,
                     [

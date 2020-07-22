@@ -5,7 +5,7 @@
 
     function createGroup($user)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         
         $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);
         $id=$result[0]["userID"];

@@ -8,7 +8,7 @@
 
     function validateSession($cookie)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select("SELECT * FROM users WHERE username = ?",[$cookie]);
         if(count($result)==1)
             return true;
@@ -17,7 +17,7 @@
 
     function isValidUser($user)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select("SELECT * FROM users WHERE username = ?",[$user]);
         if(count($result)==1)
             return true;

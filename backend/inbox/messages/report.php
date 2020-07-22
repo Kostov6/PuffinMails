@@ -1,6 +1,6 @@
 <?php
     include '../common/common.php';
-    $db = new Db("webproject",'');
+    $db = new Db();
     
     $body=(array) json_decode(file_get_contents('php://input'));
     $senderName = $body["sender"];

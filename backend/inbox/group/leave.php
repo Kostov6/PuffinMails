@@ -5,7 +5,7 @@
 
     function leaveGroup($user)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         
         //get users ID
         $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);

@@ -5,7 +5,7 @@
     function sameGroups($leader,$user)
     {
         
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select("SELECT member_of FROM users WHERE username=?",[$leader]);
         $groupId1=$result[0]["member_of"];
         
@@ -18,7 +18,7 @@
 
     function remove($user)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         
         //get users ID
         $result=$db->select("SELECT userID FROM users WHERE username = ?",[$user]);

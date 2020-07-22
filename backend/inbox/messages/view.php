@@ -11,20 +11,20 @@
 
     function existsId($msgId)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select("SELECT * FROM message WHERE msgId = ?",[$msgId]);
         return count($result) == 1;
     }
     function isMessageIdInUserInbox($msgId,$cookie)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select(" SELECT u.userID,m.msgId FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId WHERE u.username=? AND m.msgId=?",[$cookie,$msgId]);
         return count($result) == 1;
     }
     
     function viewMessage($msgId,$user)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select("SELECT message.*,users.username as sender FROM message INNER JOIN users on users.userId=message.senderId WHERE msgId = ?",[$msgId]);
         $msgType=$result[0]["msgType"];
         $sender=$result[0]["sender"];

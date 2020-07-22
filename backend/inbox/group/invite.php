@@ -4,7 +4,7 @@
 
     function inviteUser($leader,$user)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         
         //get leader ID
         $result=$db->select("SELECT userID FROM users WHERE username = ?",[$leader]);

@@ -12,7 +12,7 @@
 
     function viewInbox($cookie,$filter)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.time_sent,u2.username as sender,seen FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType=? ORDER BY time_sent DESC",[$cookie,$filter]);
         $result=anonymize($result);
 
@@ -21,7 +21,7 @@
 
     function anonymize($result)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         for($i=0;$i<count($result);$i++)
         {
             if($result[$i]["msgType"] == 1 || $result[$i]["msgType"] == 2)
@@ -37,7 +37,7 @@
 
     function viewAll($cookie)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select("SELECT m.msgType,m.msgId,m.title,m.time_sent,u2.username as sender,seen  FROM users u INNER JOIN inbox i on u.userID = i.ownerId INNER JOIN inboxmessages iMsg on i.inboxId = iMsg.inboxId INNER JOIN message m on iMsg.msgId = m.msgId INNER JOIN users u2 on m.senderId = u2.userId WHERE u.username=? AND m.msgType != 7 AND m.msgType != 6 ORDER BY time_sent DESC",[$cookie]);
         $result=anonymize($result);
 
@@ -47,7 +47,7 @@
 
     function viewSendMessages($cookie)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         $result=$db->select("SELECT userId FROM users WHERE username = ?",[$cookie]);
         $userId=$result[0]["userId"];
 

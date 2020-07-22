@@ -4,7 +4,7 @@
 
     function getGroupMembers($user)
     {
-        $db = new Db("webproject",'');
+        $db = new Db();
         
         //get group ID
         $result=$db->select("SELECT member_of FROM users WHERE username = ?",[$user]);
