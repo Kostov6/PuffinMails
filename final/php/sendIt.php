@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = 0;
 
     try{
-        $db=new Db();
+        $db = new Db();
         $conn = $db->getConnection();
     } catch (PDOException $e) {
         $error = "В момента има проблем с базата данни, моля опитайте по-късно!";
@@ -96,64 +96,93 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		return;
 	}
 
-    
+    $to = explode(" ", $to);
 
-    if (strlen($to) == 0 || strlen($to) > 64) {
-        $error = "До трябва да е между 1 и 64 символа!";
+    if (count($to) > 1 && isset($_POST['anonySubmit'])) {
+        $error = "Не е позволено пращането на анонимно съобщение до много потребители!";
         return;
     }
-
-    if (strlen($to) < 4) {
-        $type = 3;
+    
+    foreach ($to as $check) {
+        if (strlen($check) < 4) {
+            $error = "Не е позволено се праща по тема когато съобщението е до много потребители!";
+            return;
+        }
     }
-    if ((isset($_POST['anonySubmit']))) {
-        if (!checkIfAnony($message)) {
-            $error = "Съобщението не е анонимно!";
+
+    foreach ($to as $receiver) {
+        if (isset($sent[$receiver]) &&  isset($sent[$receiver]) == 1) {
+            continue;
+        }
+
+        $sent[$receiver] = 1;
+
+        if (strlen($receiver) == 0 || strlen($receiver) > 64) {
+            $error = "До трябва да е между 1 и 64 символа!";
             return;
         }
-        elseif (!isset($_SESSION['end'])) {
-            $error = "В момента не могат да се изпращат анонимни съобщения!";
-            return;
+
+        if (strlen($receiver) < 4) {
+            $type = 3;
         }
-        elseif  ($_SESSION['is_admin'] == 1) {
-            $error = "Администраторите не могат да пращат анонимни писма!";
-            return;
+        if ((isset($_POST['anonySubmit']))) {
+            if (!checkIfAnony($message)) {
+                $error = "Съобщението не е анонимно!";
+                return;
+            }
+            elseif (!isset($_SESSION['end'])) {
+                $error = "В момента не могат да се изпращат анонимни съобщения!";
+                return;
+            }
+            elseif  ($_SESSION['is_admin'] == 1) {
+                $error = "Администраторите не могат да пращат анонимни писма!";
+                return;
+            }
+            elseif (strlen($receiver) < 4) {
+                $type = 1;
+            }
+            else {
+                $type = 2;
+            }
         }
-        elseif (strlen($to) < 4) {
-            $type = 1;
+
+        if (strlen($receiver) < 4 ) {
+            $sql = "SELECT * FROM users WHERE number_theme = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$receiver]);
+            $row = $stmt->fetch();
+            $receiverId[$receiver] = $row['userID'];
+
+            if (!$row) {
+                $error = "Няма потребител с тема: $receiver";
+                return;
+            }
+            elseif ($_SESSION['recension_number'] == $receiver && $type = 1) {
+                $_SESSION['sent'] = true;
+            }
         }
         else {
-            $type = 2;
+            $sql = "SELECT * FROM users WHERE username = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$receiver]);
+            $row = $stmt->fetch();
+            $receiverId[$receiver] = $row['userID'];
+            
+            if (!$row) {
+                $error = "Няма потребител с име: $receiver";
+                return;
+            }
         }
     }
 
-    if (strlen($to) < 4 ) {
-        $sql = "SELECT * FROM users WHERE number_theme = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([$to]);
-        $row = $stmt->fetch();
-
-        if (!$row) {
-            $error = "Няма потребител с тема: $to";
-            return;
-        }
-        elseif ($_SESSION['recension_number'] == $to && $type = 1) {
-            $_SESSION['sent'] = true;
-        }
+    if (count($to) == 1) {
+        $to = $to[0];
     }
     else {
-        $sql = "SELECT * FROM users WHERE username = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([$to]);
-        $row = $stmt->fetch();
-		
-        if (!$row) {
-            $error = "Няма потребител с име: $to";
-            return;
-        }
+        $to = "multi";
     }
-    $too = $to;
-    $to = $row['userID'];
+    
+    
 
     $sql = "INSERT INTO message (msgType, title, content, senderId)
             VALUES (?, ?, ?, ?)";
@@ -166,16 +195,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = $stmt->fetch();
     $msgId = $row["MAX(`msgId`)"];
 
-    $sql = "INSERT INTO inboxmessages (inboxId, msgId)
-            VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$to, $msgId]);
-    //header("Location: success.php?to=" . $too);
-    if (headers_sent()) {
-        die("Redirect failed. Please click on this link: <a href=...>");
+    foreach ($receiverId as $recId) {
+        $sql = "INSERT INTO inboxmessages (inboxId, msgId)
+                VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$recId, $msgId]);
     }
-    else{
-        exit(header("Location: success.php?to=" . $too));
-    }
+
+
+    header("Location: success.php?to=" . $to);
     exit();
 }
