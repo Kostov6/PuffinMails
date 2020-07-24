@@ -1,7 +1,7 @@
 <?php
     require ('authorization.php');
 
-    require ('db.php');
+    require ('../backend/inbox/common/db.php');
     require ('sendMessage.php');
     require ('recensionActions.php');
     $db = new Db();
@@ -16,7 +16,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
         if (empty($events)) {
-            $sql = "SELECT userID, number_theme, recension_number FROM users WHERE is_admin = 0";
+            $sql = "SELECT userID, first_name, last_name, faculty_number, number_theme, recension_number FROM users WHERE is_admin = 0";
             $usersRec = $db->select($sql, []);
 
             $endDate = $_POST['end_date'];
@@ -35,10 +35,21 @@
                     $errors[] = "Крайния срок не може да в миналото!";
                 }
             }
+
+            $title = $_POST['title'];
+            $message = $_POST['message'];
+
+            if (mb_strlen($title, 'UTF-8') == 0 || mb_strlen($title, 'UTF-8') > 128) {
+                $errors[] = "Моля въведете заглавие между 1 и 128 символа!";
+            }
+
+            if (mb_strlen($message, 'UTF-8') == 0 || mb_strlen($message, 'UTF-8') > 128) {
+                $errors[] = "Моля въведете съобщение между 1 и 2048 символа!";
+            }
             
-            if (empty($errors)) { //TODO TEST
+            if (empty($errors)) { 
                 $usersRec = distributeRecensions($usersRec, $db);
-                sendRecensionMessages($userId, $usersRec, $db);  
+                sendRecensionMessages($userId, $title, $message, $usersRec, $db); 
                 startEvent('Рецензии', $endDate, $db);
 
                 $sql = "SELECT * FROM events WHERE end_date > CURRENT_DATE()";

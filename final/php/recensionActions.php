@@ -34,11 +34,20 @@
         return $usersRec;
     }
 
-    function sendRecensionMessages($senderId, $usersRec, $db) {
+    function sendRecensionMessages($senderId, $title, $message, $usersRec, $db) {
         foreach ($usersRec as $user) {
-            $title = "Рецензия";
-            $message = "Имате да направите рецензия на тема №" . $user['recension_number'];
-            sendMessage($senderId, $user['userID'], 5, $title, $message, $db);
+            $titleCurr = $title;
+            $messageCurr = $message;
+
+            $titleCurr = str_replace('$fn', $user['faculty_number'], $titleCurr);
+            $titleCurr = str_replace('$name', $user['first_name'] . ' ' . $user['last_name'], $titleCurr);
+            $titleCurr = str_replace('$rec', $user['recension_number'], $titleCurr);
+
+            $messageCurr = str_replace('$fn', $user['faculty_number'], $messageCurr);
+            $messageCurr = str_replace('$name', $user['first_name'] . ' ' . $user['last_name'], $messageCurr);
+            $messageCurr = str_replace('$rec', $user['recension_number'], $messageCurr);
+
+            sendMessage($senderId, $user['userID'], 5, $titleCurr, $messageCurr, $db);
         }
     }
 

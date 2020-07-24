@@ -1,7 +1,7 @@
 <?php
 	function sendAll() {
 		
-		require ('db.php');
+		require ('../backend/inbox/common/db.php');
 		require ('sendMessage.php');
 		require ('authorization.php');
 

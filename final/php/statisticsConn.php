@@ -1,6 +1,6 @@
 <?php 
     require ('php/authorization.php');    
-    require ('php/db.php');
+    require ('../backend/inbox/common/db.php');
 
     $db = new Db();
 
