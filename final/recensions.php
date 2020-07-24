@@ -39,9 +39,21 @@
         <main>
             <h3>Рецензии</h3>
             <form method="POST" action="" id="add_event" onsubmit="return validate();">
-                <label for="end_date">Краен срок:</label>
-                <input type="date" name="end_date" id="end_date" required>
-                <input id="submit" type="submit" name="submit" value="Разпредели рецензии">
+                <input type="text" name="title" id="title" placeholder="Заглавие на съобщението" required>
+                <textarea id="message" name="message" placeholder="Съобщение до рецензентите" required></textarea>
+                <div id="menu">
+                    <div>
+                        <label for="end_date">Краен срок:</label>
+                        <input type="date" name="end_date" id="end_date" required>
+                        <input id="submit" type="submit" name="submit" value="Разпредели рецензии">
+                    </div>
+                    <div id="legend">
+                        <div>В заглавието и съобщението може да използвате </br> следните променливите:</div>
+                        <div><b>$name</b> - Име на рецензента</div>
+                        <div><b>$fn</b> - Факултетен номер на рецензента</div>
+                        <div><b>$rec</b> - Номер на тема за рецензия</div>
+                    </div>
+                </div>
                 <div id="date_error" class="error"></div>
             </form>
             <table id="events" class="hidden">
@@ -54,6 +66,12 @@
                     <td>Номер на рецензия</td>
                 </tr>
             </table>
+            <h3>Добавяне на потребители</h3>
+            <form method="POST" action="php/addUsers.php" enctype="multipart/form-data"> 
+                <p>Добавете файл в json формат съдържащ масив от потребителите във формат: <div>[[потребителско име, хеш на паролата, първо име, фамилно име, факултетен номер, номер на тема], ...]</div></p>
+                <input type="file" name="file" id="file">
+                <input id="add_users" type="submit" name="add_users" value="Добави потребители">
+            </form>
         </main>
     </body>
     <div id="username" style="display:none"><?php echo $_SESSION["username"];?></div>
