@@ -27,12 +27,12 @@
 }  
 
 #add_event {
-    width: 350px;
+    width: 660px;
     font-size: 18px;
     margin-bottom: 15px;
 }  
 
-#submit {
+#submit, #add_users {
 	background-color: rgb(52, 73, 94);
 	border: none;
     color: white;
@@ -42,10 +42,32 @@
     display: block;
 }
 
-#submit:hover {
+#submit:hover, #add_users:hover {
 	cursor: pointer;
 }
 
 .error {
     color: red;
+}
+
+#message {
+    width: 99%;
+    height: 100px;
+    resize: none;
+    display: block;
+}
+
+#title {
+    width: 99%;
+    display: block;
+}
+
+#menu {
+    display: flex;
+}
+
+#legend {
+    text-align: right;
+    margin-left: auto;
+    font-size: 16px;
 }
